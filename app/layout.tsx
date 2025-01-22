@@ -20,9 +20,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen bg-[#0A0B1C]`}>
+      <body
+        className={`${inter.className} min-h-screen bg-[#0A0B1C] flex flex-col`}
+      >
+        {/* Header Section */}
         <header className="fixed top-0 w-full z-50 bg-[#0A0B1C]/80 backdrop-blur-sm border-b border-white/5">
-          <nav className="container flex items-center justify-between h-16 px-4">
+          <nav className="container mx-auto flex items-center justify-between h-14 px-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -44,7 +47,7 @@ export default function RootLayout({
                   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
-                <span className="font-bold">Influencer Directory</span>
+                <span className="font-bold text-white text-lg">The Influencer</span>
               </Link>
             </motion.div>
             <div className="hidden md:flex space-x-6">
@@ -59,7 +62,7 @@ export default function RootLayout({
                   >
                     <Link
                       href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      className="text-sm text-gray-400 hover:text-white transition-colors"
+                      className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       {item}
                     </Link>
@@ -75,27 +78,34 @@ export default function RootLayout({
             >
               <Button
                 variant="ghost"
-                className="text-gray-400 hover:text-white"
+                className="text-gray-400 hover:text-white transition-all duration-200"
               >
                 Login
               </Button>
-              <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white">
+              <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white transition-transform duration-200 hover:scale-105">
                 Sign Up
               </Button>
             </motion.div>
           </nav>
         </header>
-        <main className="pt-16">{children}</main>
+
+        {/* Main Content */}
+        <main className="flex-grow pt-14 container mx-auto flex flex-col items-center justify-center text-center">
+          {children}
+        </main>
+
+        {/* Footer Section */}
         <footer className="bg-[#0A0B1C]/80 backdrop-blur-sm border-t border-white/5">
-          <div className="container px-4 py-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="container mx-auto px-4 py-8 flex flex-col items-center">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center md:text-left">
+              {/* Company Links */}
               <div>
-                <h3 className="font-semibold mb-4 text-white">Company</h3>
+                <h3 className="font-semibold mb-3 text-white">Company</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link
                       href="/about"
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       About Us
                     </Link>
@@ -103,20 +113,21 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/contact"
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       Contact
                     </Link>
                   </li>
                 </ul>
               </div>
+              {/* Resources */}
               <div>
-                <h3 className="font-semibold mb-4 text-white">Resources</h3>
+                <h3 className="font-semibold mb-3 text-white">Resources</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link
                       href="/blog"
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       Blog
                     </Link>
@@ -124,20 +135,21 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/support"
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       Support
                     </Link>
                   </li>
                 </ul>
               </div>
+              {/* Legal */}
               <div>
-                <h3 className="font-semibold mb-4 text-white">Legal</h3>
+                <h3 className="font-semibold mb-3 text-white">Legal</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link
                       href="/privacy"
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       Privacy Policy
                     </Link>
@@ -145,47 +157,91 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/terms"
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-colors duration-200"
                     >
                       Terms of Service
                     </Link>
                   </li>
                 </ul>
               </div>
+              {/* Social Media */}
               <div>
-                <h3 className="font-semibold mb-4 text-white">Follow Us</h3>
-                <div className="flex space-x-4">
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <svg
-                      className="h-6 w-6"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
+                <h3 className="font-semibold mb-3 text-white">Follow Us</h3>
+                <div className="flex justify-center space-x-4">
+                  {[
+                    {
+                      href: "https://facebook.com",
+                      icon: (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M18 2h-3c-1.105 0-2 .895-2 2v3H9v4h4v10h4v-10h3l1-4h-4V4c0-.553.447-1 1-1h3V2z" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      href: "https://twitter.com",
+                      icon: (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.11-.83A7.72 7.72 0 0023 3z" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      href: "https://instagram.com",
+                      icon: (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M7.75 2h8.5A5.25 5.25 0 0121.5 7.25v8.5A5.25 5.25 0 0116.25 21H7.75A5.25 5.25 0 012.5 15.75v-8.5A5.25 5.25 0 017.75 2zm6.25 12.5a3.75 3.75 0 10-7.5 0 3.75 3.75 0 007.5 0zM18 7.25a.75.75 0 110 1.5.75.75 0 010-1.5z" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      href: "https://linkedin.com",
+                      icon: (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M20 0H4C1.8 0 0 1.8 0 4v16c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V4c0-2.2-1.8-4-4-4zM8 20H5V9h3v11zM6.5 7.5C5.7 7.5 5 6.8 5 6s.7-1.5 1.5-1.5S8 5.2 8 6s-.7 1.5-1.5 1.5zM20 20h-3v-5.5c0-1.1-.9-2-2-2s-2 .9-2 2V20h-3V9h3v1.6c.9-1.1 2.3-1.6 3.6-1.6 2.8 0 5.4 2.3 5.4 5.5V20z" />
+                        </svg>
+                      ),
+                    },
+                  ].map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="text-gray-400 hover:text-white transition-colors duration-200"
                     >
-                      <path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84 0 0 0 .497-3.753C20.18 7.773 21.692 5.25 22 4.009z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <svg
-                      className="h-6 w-6"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
-                  </a>
+                      {social.icon}
+                    </motion.a>
+                  ))}
                 </div>
               </div>
+
             </div>
-            <div className="mt-8 pt-8 border-t border-white/5 text-center text-gray-400">
+            <div className="mt-8 border-t border-white/5 text-center text-gray-400 pt-4">
               <p>
-                &copy; {new Date().getFullYear()} Influencer Directory. All
-                rights reserved.
+                &copy; {new Date().getFullYear()} The Influencer. All rights
+                reserved.
               </p>
             </div>
           </div>
