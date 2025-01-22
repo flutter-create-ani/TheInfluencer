@@ -38,9 +38,7 @@ export default function ContactPage() {
               <form className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label htmlFor="first-name" className="block font-medium">
-                      First name
-                    </label>
+                    <label htmlFor="first-name">First name</label>
                     <Input
                       id="first-name"
                       placeholder="Enter your first name"
@@ -48,20 +46,12 @@ export default function ContactPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="last-name" className="block font-medium">
-                      Last name
-                    </label>
-                    <Input
-                      id="last-name"
-                      placeholder="Enter your last name"
-                      className="border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500"
-                    />
+                    <label htmlFor="last-name">Last name</label>
+                    <Input id="last-name" placeholder="Enter your last name" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block font-medium">
-                    Email
-                  </label>
+                  <label htmlFor="email">Email</label>
                   <Input
                     id="email"
                     placeholder="Enter your email"
@@ -70,9 +60,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="message" className="block font-medium">
-                    Message
-                  </label>
+                  <label htmlFor="message">Message</label>
                   <Textarea
                     className="min-h-[150px] border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500"
                     id="message"
