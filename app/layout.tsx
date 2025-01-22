@@ -18,10 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState({
-    title: "",
-    content: null,
-  });
+  const [modalContent, setModalContent] = useState<{
+    title: string;
+    content: React.ReactNode | null;
+  }>({ title: "", content: null });
 
   const openModal = (title: string, content: React.ReactNode) => {
     setModalContent({ title, content });
@@ -40,12 +40,14 @@ export default function RootLayout({
     },
   };
 
+  const currentYear = new Date().getFullYear();
+
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen bg-[#0A0B1C]`}>
         <CursorEffect />
         <header className="fixed top-0 w-full z-50 bg-[#0A0B1C]/80 backdrop-blur-sm border-b border-white/5">
-          <nav className="container flex items-center justify-between h-16 px-4">
+          <nav className="container mx-auto flex items-center justify-between h-16 px-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -114,7 +116,7 @@ export default function RootLayout({
         </header>
         <main className="pt-16">{children}</main>
         <footer className="bg-[#0A0B1C]/80 backdrop-blur-sm border-t border-white/5">
-          <div className="container px-4 py-12">
+          <div className="container mx-auto px-4 py-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
                 <h3 className="font-semibold mb-4 text-white">Company</h3>
@@ -203,10 +205,10 @@ export default function RootLayout({
                 <h3 className="font-semibold mb-4 text-white">Follow Us</h3>
                 <div className="flex space-x-4">
                   {[
-                    { Icon: FaTwitter, href: "#" },
-                    { Icon: FaInstagram, href: "#" },
-                    { Icon: FaLinkedin, href: "#" },
-                    { Icon: FaFacebook, href: "#" },
+                    { Icon: FaTwitter, href: "/twitter" },
+                    { Icon: FaInstagram, href: "/instagram" },
+                    { Icon: FaLinkedin, href: "/linkedin" },
+                    { Icon: FaFacebook, href: "/facebook" },
                   ].map(({ Icon, href }, index) => (
                     <motion.a
                       key={index}
@@ -222,10 +224,7 @@ export default function RootLayout({
               </div>
             </div>
             <div className="mt-8 pt-8 border-t border-white/5 text-center text-gray-400">
-              <p>
-                &copy; {new Date().getFullYear()} Influencer Directory. All
-                rights reserved.
-              </p>
+              <p>&copy; {currentYear} Influencer Directory. All rights reserved.</p>
             </div>
           </div>
         </footer>
@@ -233,7 +232,7 @@ export default function RootLayout({
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
           title={modalContent.title}
-          content={modalContent.content}
+          content={modalContent.content || <p>No content available.</p>}
         />
       </body>
     </html>
