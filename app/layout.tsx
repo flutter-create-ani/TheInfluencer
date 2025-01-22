@@ -47,7 +47,9 @@ export default function RootLayout({
                   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
-                <span className="font-bold text-white text-lg">The Influencer</span>
+                <span className="font-bold text-white text-lg">
+                  The Influencer
+                </span>
               </Link>
             </motion.div>
             <div className="hidden md:flex space-x-6">
@@ -236,7 +238,6 @@ export default function RootLayout({
                   ))}
                 </div>
               </div>
-
             </div>
             <div className="mt-8 border-t border-white/5 text-center text-gray-400 pt-4">
               <p>
