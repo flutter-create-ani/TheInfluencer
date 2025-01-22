@@ -2,8 +2,12 @@
 
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { CursorEffect } from "@/components/CursorEffect";
+import { FooterModal } from "@/components/FooterModal";
+import { FaTwitter, FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -13,19 +17,35 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState({
+    title: "",
+    content: null,
+  });
+
+  const openModal = (title: string, content: React.ReactNode) => {
+    setModalContent({ title, content });
+    setModalOpen(true);
+  };
+
   const navItemVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
   };
 
+  const socialIconVariants = {
+    hover: {
+      scale: 1.2,
+      transition: { type: "spring", stiffness: 400, damping: 10 },
+    },
+  };
+
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} min-h-screen bg-[#0A0B1C] flex flex-col`}
-      >
-        {/* Header Section */}
+      <body className={`${inter.className} min-h-screen bg-[#0A0B1C]`}>
+        <CursorEffect />
         <header className="fixed top-0 w-full z-50 bg-[#0A0B1C]/80 backdrop-blur-sm border-b border-white/5">
-          <nav className="container mx-auto flex items-center justify-between h-14 px-4">
+          <nav className="container flex items-center justify-between h-16 px-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -47,9 +67,7 @@ export default function RootLayout({
                   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
-                <span className="font-bold text-white text-lg">
-                  The Influencer
-                </span>
+                <span className="font-bold">Influencer Directory</span>
               </Link>
             </motion.div>
             <div className="hidden md:flex space-x-6">
@@ -64,7 +82,7 @@ export default function RootLayout({
                   >
                     <Link
                       href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                      className="text-sm text-gray-400 hover:text-white transition-colors"
                     >
                       {item}
                     </Link>
@@ -78,36 +96,33 @@ export default function RootLayout({
               transition={{ duration: 0.5 }}
               className="flex items-center space-x-4"
             >
-              <Button
-                variant="ghost"
-                className="text-gray-400 hover:text-white transition-all duration-200"
-              >
-                Login
-              </Button>
-              <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white transition-transform duration-200 hover:scale-105">
-                Sign Up
-              </Button>
+              <Link href="/login">
+                <Button
+                  variant="ghost"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white">
+                  Sign Up
+                </Button>
+              </Link>
             </motion.div>
           </nav>
         </header>
-
-        {/* Main Content */}
-        <main className="flex-grow pt-14 container mx-auto flex flex-col items-center justify-center text-center">
-          {children}
-        </main>
-
-        {/* Footer Section */}
+        <main className="pt-16">{children}</main>
         <footer className="bg-[#0A0B1C]/80 backdrop-blur-sm border-t border-white/5">
-          <div className="container mx-auto px-4 py-8 flex flex-col items-center">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center md:text-left">
-              {/* Company Links */}
+          <div className="container px-4 py-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
-                <h3 className="font-semibold mb-3 text-white">Company</h3>
+                <h3 className="font-semibold mb-4 text-white">Company</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link
                       href="/about"
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                      className="text-gray-400 hover:text-white transition-colors"
                     >
                       About Us
                     </Link>
@@ -115,138 +130,111 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/contact"
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                      className="text-gray-400 hover:text-white transition-colors"
                     >
                       Contact
                     </Link>
                   </li>
                 </ul>
               </div>
-              {/* Resources */}
               <div>
-                <h3 className="font-semibold mb-3 text-white">Resources</h3>
+                <h3 className="font-semibold mb-4 text-white">Resources</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link
-                      href="/blog"
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                    <button
+                      onClick={() =>
+                        openModal(
+                          "Blog",
+                          <p>Our blog content will be displayed here.</p>
+                        )
+                      }
+                      className="text-gray-400 hover:text-white transition-colors"
                     >
                       Blog
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
-                      href="/support"
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                    <button
+                      onClick={() =>
+                        openModal(
+                          "Support",
+                          <p>Our support information will be displayed here.</p>
+                        )
+                      }
+                      className="text-gray-400 hover:text-white transition-colors"
                     >
                       Support
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </div>
-              {/* Legal */}
               <div>
-                <h3 className="font-semibold mb-3 text-white">Legal</h3>
+                <h3 className="font-semibold mb-4 text-white">Legal</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link
-                      href="/privacy"
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                    <button
+                      onClick={() =>
+                        openModal(
+                          "Privacy Policy",
+                          <p>Our privacy policy will be displayed here.</p>
+                        )
+                      }
+                      className="text-gray-400 hover:text-white transition-colors"
                     >
                       Privacy Policy
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
-                      href="/terms"
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                    <button
+                      onClick={() =>
+                        openModal(
+                          "Terms of Service",
+                          <p>Our terms of service will be displayed here.</p>
+                        )
+                      }
+                      className="text-gray-400 hover:text-white transition-colors"
                     >
                       Terms of Service
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </div>
-              {/* Social Media */}
               <div>
-                <h3 className="font-semibold mb-3 text-white">Follow Us</h3>
-                <div className="flex justify-center space-x-4">
+                <h3 className="font-semibold mb-4 text-white">Follow Us</h3>
+                <div className="flex space-x-4">
                   {[
-                    {
-                      href: "https://facebook.com",
-                      icon: (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
-                          <path d="M18 2h-3c-1.105 0-2 .895-2 2v3H9v4h4v10h4v-10h3l1-4h-4V4c0-.553.447-1 1-1h3V2z" />
-                        </svg>
-                      ),
-                    },
-                    {
-                      href: "https://twitter.com",
-                      icon: (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
-                          <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.11-.83A7.72 7.72 0 0023 3z" />
-                        </svg>
-                      ),
-                    },
-                    {
-                      href: "https://instagram.com",
-                      icon: (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
-                          <path d="M7.75 2h8.5A5.25 5.25 0 0121.5 7.25v8.5A5.25 5.25 0 0116.25 21H7.75A5.25 5.25 0 012.5 15.75v-8.5A5.25 5.25 0 017.75 2zm6.25 12.5a3.75 3.75 0 10-7.5 0 3.75 3.75 0 007.5 0zM18 7.25a.75.75 0 110 1.5.75.75 0 010-1.5z" />
-                        </svg>
-                      ),
-                    },
-                    {
-                      href: "https://linkedin.com",
-                      icon: (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
-                          <path d="M20 0H4C1.8 0 0 1.8 0 4v16c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V4c0-2.2-1.8-4-4-4zM8 20H5V9h3v11zM6.5 7.5C5.7 7.5 5 6.8 5 6s.7-1.5 1.5-1.5S8 5.2 8 6s-.7 1.5-1.5 1.5zM20 20h-3v-5.5c0-1.1-.9-2-2-2s-2 .9-2 2V20h-3V9h3v1.6c.9-1.1 2.3-1.6 3.6-1.6 2.8 0 5.4 2.3 5.4 5.5V20z" />
-                        </svg>
-                      ),
-                    },
-                  ].map((social, index) => (
+                    { Icon: FaTwitter, href: "#" },
+                    { Icon: FaInstagram, href: "#" },
+                    { Icon: FaLinkedin, href: "#" },
+                    { Icon: FaFacebook, href: "#" },
+                  ].map(({ Icon, href }, index) => (
                     <motion.a
                       key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                      href={href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                      variants={socialIconVariants}
+                      whileHover="hover"
                     >
-                      {social.icon}
+                      <Icon className="h-6 w-6" />
                     </motion.a>
                   ))}
                 </div>
               </div>
             </div>
-            <div className="mt-8 border-t border-white/5 text-center text-gray-400 pt-4">
+            <div className="mt-8 pt-8 border-t border-white/5 text-center text-gray-400">
               <p>
-                &copy; {new Date().getFullYear()} The Influencer. All rights
-                reserved.
+                &copy; {new Date().getFullYear()} Influencer Directory. All
+                rights reserved.
               </p>
             </div>
           </div>
         </footer>
+        <FooterModal
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          title={modalContent.title}
+          content={modalContent.content}
+        />
       </body>
     </html>
   );

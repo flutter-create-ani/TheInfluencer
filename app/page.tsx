@@ -5,8 +5,28 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Filter, Globe, Star, Users, BarChart } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { TestimonialCarousel } from "@/components/TestimonialCarousel";
+import { useInView } from "react-intersection-observer";
 
 const MotionCard = motion(Card);
+
+const ScrollAnimatedSection = ({ children }: { children: React.ReactNode }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 export default function Home() {
   const cardVariants = {
@@ -122,7 +142,7 @@ export default function Home() {
                 >
                   <svg
                     className="h-8 w-8"
-                    fill="currentColor"
+                    fill={icon.color}
                     viewBox="0 0 24 24"
                   >
                     <path d={icon.path} />
@@ -134,92 +154,104 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container px-4">
-          <div className="text-center space-y-4 mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl font-bold tracking-tighter sm:text-5xl text-white"
-            >
-              Powerful Features
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mx-auto max-w-[600px] text-gray-400"
-            >
-              Everything you need to find and connect with the right influencers
-            </motion.p>
+      <ScrollAnimatedSection>
+        <section className="py-20 bg-gradient-to-r from-purple-600 to-indigo-600">
+          <div className="container px-4">
+            <div className="text-center space-y-4 mb-16">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
+                What Our Clients Say
+              </h2>
+              <p className="mx-auto max-w-[600px] text-gray-200">
+                Hear from the brands that have transformed their influencer
+                marketing with our platform
+              </p>
+            </div>
+            <TestimonialCarousel />
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Search,
-                title: "Advanced Search",
-                description:
-                  "Find influencers across Instagram, YouTube, TikTok, and more with our powerful search engine.",
-              },
-              {
-                icon: Filter,
-                title: "Smart Filters",
-                description:
-                  "Filter by niche, follower count, engagement rate, location, and other key metrics.",
-              },
-              {
-                icon: Globe,
-                title: "Global Reach",
-                description:
-                  "Access influencers from over 190 countries and territories worldwide.",
-              },
-              {
-                icon: Star,
-                title: "Quality Metrics",
-                description:
-                  "Evaluate influencers based on engagement, authenticity, and performance metrics.",
-              },
-              {
-                icon: Users,
-                title: "Audience Insights",
-                description:
-                  "Get detailed demographics and interests data for influencer audiences.",
-              },
-              {
-                icon: BarChart,
-                title: "Campaign Analytics",
-                description:
-                  "Track and measure the success of your influencer marketing campaigns.",
-              },
-            ].map((feature, index) => (
-              <MotionCard
-                key={index}
-                className="bg-white/5 border-white/5 backdrop-blur-sm"
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-              >
-                <CardHeader>
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
-                  >
-                    <feature.icon className="w-10 h-10 text-[#6366F1] mb-4" />
-                  </motion.div>
-                  <CardTitle className="text-white">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-400">{feature.description}</p>
-                </CardContent>
-              </MotionCard>
-            ))}
+        </section>
+      </ScrollAnimatedSection>
+
+      <ScrollAnimatedSection>
+        <section className="py-20">
+          <div className="container px-4">
+            <div className="text-center space-y-4 mb-16">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
+                Powerful Features
+              </h2>
+              <p className="mx-auto max-w-[600px] text-gray-400">
+                Everything you need to find and connect with the right
+                influencers
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: Search,
+                  title: "Advanced Search",
+                  description:
+                    "Find influencers across Instagram, YouTube, TikTok, and more with our powerful search engine.",
+                },
+                {
+                  icon: Filter,
+                  title: "Smart Filters",
+                  description:
+                    "Filter by niche, follower count, engagement rate, location, and other key metrics.",
+                },
+                {
+                  icon: Globe,
+                  title: "Global Reach",
+                  description:
+                    "Access influencers from over 190 countries and territories worldwide.",
+                },
+                {
+                  icon: Star,
+                  title: "Quality Metrics",
+                  description:
+                    "Evaluate influencers based on engagement, authenticity, and performance metrics.",
+                },
+                {
+                  icon: Users,
+                  title: "Audience Insights",
+                  description:
+                    "Get detailed demographics and interests data for influencer audiences.",
+                },
+                {
+                  icon: BarChart,
+                  title: "Campaign Analytics",
+                  description:
+                    "Track and measure the success of your influencer marketing campaigns.",
+                },
+              ].map((feature, index) => (
+                <MotionCard
+                  key={index}
+                  className="bg-white/5 border-white/5 backdrop-blur-sm"
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                >
+                  <CardHeader>
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
+                    >
+                      <feature.icon className="w-10 h-10 text-[#6366F1] mb-4" />
+                    </motion.div>
+                    <CardTitle className="text-white">
+                      {feature.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-400">{feature.description}</p>
+                  </CardContent>
+                </MotionCard>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimatedSection>
     </div>
   );
 }
