@@ -1,64 +1,70 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    /* Background and Foreground Colors */
+    --background: 230 50% 96%; /* Soft light background */
+    --foreground: 230 15% 10%; /* Darker text for contrast */
+    --card: 230 50% 100%; /* Bright card backgrounds */
+    --card-foreground: 230 15% 10%;
+    --popover: 230 50% 100%;
+    --popover-foreground: 230 15% 10%;
+    --primary: 330 85% 58%; /* Vibrant pink (Instagram vibe) */
+    --primary-foreground: 0 0% 100%; /* White for readability */
+    --secondary: 198 78% 52%; /* Bright blue (TikTok vibe) */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 230 35% 92%; /* Soft muted tones */
+    --muted-foreground: 230 15% 30%; /* Slightly darker muted text */
+    --accent: 45 94% 60%; /* Bold yellow (to stand out) */
+    --accent-foreground: 0 0% 15%;
+    --destructive: 10 80% 56%; /* Bold red for warnings (YouTube vibe) */
+    --destructive-foreground: 0 0% 100%;
+    --border: 230 20% 80%; /* Light neutral borders */
+    --input: 230 20% 80%; /* Similar to border */
+    --ring: 330 85% 58%; /* Vibrant ring color matching primary */
+    --radius: 1rem; /* Slightly more rounded for modern aesthetics */
+
+    /* Chart Colors (Dynamic and Bold) */
+    --chart-1: 330 85% 58%; /* Pink */
+    --chart-2: 198 78% 52%; /* Blue */
+    --chart-3: 43 94% 67%; /* Lime green */
+    --chart-4: 45 94% 60%; /* Yellow */
+    --chart-5: 285 80% 60%; /* Purple (TikTok contrast) */
   }
+
+  /* Dark Mode Adjustments */
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: 230 15% 10%; /* Darker background */
+    --foreground: 0 0% 100%; /* Bright white text */
+    --card: 230 20% 14%; /* Darker cards */
+    --card-foreground: 0 0% 100%;
+    --popover: 230 20% 14%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 330 85% 68%; /* Slightly brighter pink */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 198 78% 62%; /* Brighter blue */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 230 15% 20%; /* Muted darker background */
+    --muted-foreground: 230 35% 85%;
+    --accent: 45 94% 65%; /* Bright yellow */
+    --accent-foreground: 0 0% 10%;
+    --destructive: 10 80% 66%; /* Brighter red */
+    --destructive-foreground: 0 0% 100%;
+    --border: 230 25% 30%; /* Darker borders */
+    --input: 230 25% 30%;
+    --ring: 330 85% 68%; /* Pink ring */
+    --chart-1: 330 85% 68%; /* Brighter pink */
+    --chart-2: 198 78% 62%; /* Brighter blue */
+    --chart-3: 43 94% 77%; /* Brighter lime green */
+    --chart-4: 45 94% 70%; /* Brighter yellow */
+    --chart-5: 285 80% 70%; /* Brighter purple */
   }
 }
- 
+
 @layer base {
+  /* Global Styles */
   * {
     @apply border-border;
   }
@@ -66,4 +72,3 @@
     @apply bg-background text-foreground;
   }
 }
-
