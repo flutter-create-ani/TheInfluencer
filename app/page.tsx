@@ -66,7 +66,8 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-4xl md:text-6xl font-bold tracking-tighter text-white"
           >
-            Find the Perfect <span className="text-[#6366F1]">Influencers</span>
+            Find the Perfect{" "}
+            <span className="text-[#6366F1] ">Influencers</span>
             <br />
             for Your Brand
           </motion.h1>
