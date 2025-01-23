@@ -7,6 +7,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { useInView } from "react-intersection-observer";
+import TypingAnimation from "@/components/TypingAnimation";
 
 const MotionCard = motion(Card);
 
@@ -67,7 +68,9 @@ export default function Home() {
             className="text-4xl md:text-6xl font-bold tracking-tighter text-white"
           >
             Find the Perfect{" "}
-            <span className="text-[#6366F1] ">Influencers</span>
+            <span className="text-[#6366F1] inline-block">
+              <TypingAnimation />
+            </span>
             <br />
             for Your Brand
           </motion.h1>
