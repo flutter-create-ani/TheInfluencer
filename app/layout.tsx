@@ -9,7 +9,7 @@ import { CursorEffect } from "@/components/CursorEffect";
 import { FooterModal } from "@/components/FooterModal";
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
 import "./globals.css";
-
+import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -54,22 +54,12 @@ export default function RootLayout({
               transition={{ duration: 0.5 }}
             >
               <Link href="/" className="flex items-center space-x-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-6 w-6 text-[#6366F1]"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-                <span className="font-bold">Influencer Directory</span>
+                <Image
+                  src="/images/The_Influencer.jpg"
+                  alt="Descriptive alt text"
+                  width={50}
+                  height={30}
+                />
               </Link>
             </motion.div>
             <div className="hidden md:flex space-x-6">
@@ -224,7 +214,9 @@ export default function RootLayout({
               </div>
             </div>
             <div className="mt-8 pt-8 border-t border-white/5 text-center text-gray-400">
-              <p>&copy; {currentYear} Influencer Directory. All rights reserved.</p>
+              <p>
+                &copy; {currentYear} Influencer Directory. All rights reserved.
+              </p>
             </div>
           </div>
         </footer>
