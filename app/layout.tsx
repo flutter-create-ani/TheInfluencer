@@ -59,6 +59,7 @@ export default function RootLayout({
                   alt="Descriptive alt text"
                   width={50}
                   height={30}
+                  style={{ borderRadius: "25px" }}
                 />
               </Link>
             </motion.div>
