@@ -68,7 +68,7 @@ export default function Home() {
             className="text-4xl md:text-6xl font-bold tracking-tighter text-white"
           >
             Find the Perfect{" "}
-            <span className="text-[#6366F1] inline-block">
+            <span className="inline-block">
               <TypingAnimation />
             </span>
             <br />

@@ -1,6 +1,5 @@
 import React from "react";
-import TypingAnimator from "react-typing-animator";
-import "react-typing-animator/styles.css";
+import { Typewriter } from "react-simple-typewriter";
 
 function TypingAnimation() {
   const textArray = [
@@ -11,27 +10,18 @@ function TypingAnimation() {
     "ઇનફ્લુએન્સર",
   ];
 
-  // Custom style for larger cursor
-  const customStyles = {
-    cursor: {
-      width: "4px", // Adjust width
-      height: "30px", // Adjust height
-      backgroundColor: "#6366F1", // Match color
-    },
-  };
-
   return (
-    <TypingAnimator
-      textArray={textArray}
-      cursorColor="#6366F1"
-      textColor="#6366F1"
-      fontSize="inherit"
-      typingSpeed={150}
-      delaySpeed={1000}
-      height="auto"
-      backspace
-      customStyles={customStyles}
-    />
+    <span className="text-[#6366F1]">
+      <Typewriter
+        words={textArray}
+        loop={0} // Infinite loop
+        typeSpeed={200}
+        deleteSpeed={100}
+        delaySpeed={1000}
+        cursor
+        cursorStyle="|"
+      />
+    </span>
   );
 }
 
