@@ -14,28 +14,44 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [role, setRole] = useState("Influencer");
+  const [role, setRole] = useState("influencer");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
 
     try {
       const response = await fetch("/api/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, role }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          role: role.toLowerCase(),
+        }),
       });
 
-      if (response.ok) {
-        router.push("/dashboard");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.status === "success") {
+        router.push(data.redirectTo);
       } else {
-        const data = await response.json();
-        setError(data.message || "Invalid email or password");
+        setError(data.message || "An error occurred during login");
       }
     } catch (err) {
-      setError("An error occurred during login");
+      console.error("Login error:", err);
+      setError("An error occurred during login. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -49,13 +65,18 @@ export default function LoginPage() {
             <PasswordInput password={password} setPassword={setPassword} />
             <RoleSelector role={role} setRole={setRole} />
 
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+            {error && (
+              <p className="text-red-500 text-sm text-center">{error}</p>
+            )}
+
             <Button
               type="submit"
               className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-lg transition duration-300"
+              disabled={isLoading}
             >
-              Log in
+              {isLoading ? "Logging in..." : "Log in"}
             </Button>
+
             <div className="text-right mt-2">
               <a
                 href="/forgot-password"

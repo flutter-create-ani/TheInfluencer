@@ -22,9 +22,9 @@ export function RoleSelector({ role, setRole }: RoleSelectorProps) {
             "block w-full rounded-lg border-2 border-gray-300 bg-gray-100 text-gray-800 focus:ring-2 focus:border-purple-500 focus:ring-offset-2 focus:ring-pink-500 focus:outline-none "
           )}
         >
-          <option value="Influencer">Influencer</option>
-          <option value="Brand">Brand</option>
-          <option value="Admin">Admin</option>
+          <option value="influencer">Influencer</option>
+          <option value="brand">Brand</option>
+          <option value="admin">Admin</option>
         </select>
       </div>
     </div>
