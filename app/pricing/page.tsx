@@ -57,7 +57,7 @@ export default function PricingPage() {
             Simple, Transparent Pricing
           </h1>
           <p className="mx-auto max-w-[600px] text-foreground/60">
-            Choose the plan that's right for you
+            Choose the plan that is right for you
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">

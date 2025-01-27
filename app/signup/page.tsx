@@ -41,7 +41,7 @@ export default function SignupPage() {
         const data = await response.json();
         setError(data.message || "An error occurred during signup");
       }
-    } catch (err) {
+    } catch {
       setError("An error occurred during signup");
     }
   };

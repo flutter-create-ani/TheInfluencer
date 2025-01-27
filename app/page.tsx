@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Filter, Globe, Star, Users, BarChart } from "lucide-react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { useInView } from "react-intersection-observer";
