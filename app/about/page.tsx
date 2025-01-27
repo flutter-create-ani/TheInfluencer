@@ -26,7 +26,7 @@ export default function AboutPage() {
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-white">Our Mission</h2>
             <p className="text-gray-400">
-              At Influencer Directory, we're on a mission to revolutionize
+              At Influencer Directory, we are on a mission to revolutionize
               influencer marketing. We believe in the power of authentic
               connections between brands and influencers to create meaningful
               engagement with audiences worldwide.

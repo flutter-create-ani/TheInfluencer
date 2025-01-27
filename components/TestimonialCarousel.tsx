@@ -71,7 +71,7 @@ export const TestimonialCarousel = () => {
           </div>
         </motion.div>
       </AnimatePresence>
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+      <div className="absolute bottom-0 left-4 top-0 flex flex-col justify-center space-y-2">
         {testimonials.map((_, index) => (
           <motion.div
             key={index}

@@ -19,8 +19,8 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="mx-auto max-w-[600px] text-gray-300 animate-fadeIn delay-200">
-            We'd love to hear from you. Please fill out this form or contact us
-            using the information below.
+            We would love to hear from you. Please fill out this form or contact
+            us using the information below.
           </p>
         </div>
         <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -30,7 +30,7 @@ export default function ContactPage() {
                 Send us a message
               </CardTitle>
               <CardDescription className="text-sm">
-                Fill out the form below and we'll get back to you as soon as
+                Fill out the form below and we will get back to you as soon as
                 possible.
               </CardDescription>
             </CardHeader>

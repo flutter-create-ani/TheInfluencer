@@ -3,11 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Filter, Globe, Star, Users, BarChart } from "lucide-react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { useInView } from "react-intersection-observer";
-import TypingAnimation from "@/components/TypingAnimation";
 
 const MotionCard = motion(Card);
 
@@ -67,10 +65,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-4xl md:text-6xl font-bold tracking-tighter text-white"
           >
-            Find the Perfect{" "}
-            <span className="text-[#6366F1] inline-block">
-              <TypingAnimation />
-            </span>
+            Find the Perfect <span className="text-[#6366F1]">Influencers</span>
             <br />
             for Your Brand
           </motion.h1>
@@ -140,8 +135,8 @@ export default function Home() {
                   initial="hidden"
                   animate="visible"
                   variants={iconVariants}
-                  transition={{ delay: 0.8 + index * 0.1 }}
-                  whileHover={{ scale: 1.2 }}
+                  transition={{ delay: 0.1 + index * 0.1 }}
+                  whileHover={{ scale: 1.3 }}
                   className={`text-[${icon.color}]`}
                 >
                   <svg
