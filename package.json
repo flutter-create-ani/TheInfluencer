@@ -22,7 +22,6 @@
     "react-icons": "^5.4.0",
     "react-intersection-observer": "^9.15.1",
     "react-mouse-particles": "^1.1.5",
-    "react-typing-effect": "^2.0.5",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
