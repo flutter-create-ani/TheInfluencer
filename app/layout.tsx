@@ -1,6 +1,7 @@
 "use client";
 
 import { Inter } from "next/font/google";
+import "./globals.css";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";

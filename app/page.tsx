@@ -6,6 +6,7 @@ import { Search, Filter, Globe, Star, Users, BarChart } from "lucide-react";
 import { motion } from "framer-motion";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { useInView } from "react-intersection-observer";
+import TypingAnimation from "@/components/TypingAnimation";
 
 const MotionCard = motion(Card);
 
@@ -65,8 +66,10 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-4xl md:text-6xl font-bold tracking-tighter text-white"
           >
-            Find the Perfect <span className="text-[#6366F1]">Influencers</span>
-            <br />
+            Find the Perfect{" "}
+            <span className="text-[#6366F1]">
+              <TypingAnimation />
+            </span>
             for Your Brand
           </motion.h1>
           <motion.p
