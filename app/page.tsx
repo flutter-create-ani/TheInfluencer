@@ -6,7 +6,6 @@ import { Search, Filter, Globe, Star, Users, BarChart } from "lucide-react";
 import { motion } from "framer-motion";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { useInView } from "react-intersection-observer";
-import TypingAnimation from "@/components/TypingAnimation";
 
 const MotionCard = motion(Card);
 

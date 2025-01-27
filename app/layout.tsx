@@ -8,8 +8,6 @@ import { motion } from "framer-motion";
 import { CursorEffect } from "@/components/CursorEffect";
 import { FooterModal } from "@/components/FooterModal";
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
-import "./globals.css";
-import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -69,7 +67,7 @@ export default function RootLayout({
                   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
-                <span className="font-bold">Influencer Directory</span>
+                <span className="font-bold text-white">The Influencer </span>
               </Link>
             </motion.div>
             <div className="hidden md:flex space-x-6">
@@ -224,9 +222,7 @@ export default function RootLayout({
               </div>
             </div>
             <div className="mt-8 pt-8 border-t border-white/5 text-center text-gray-400">
-              <p>
-                &copy; {currentYear} Influencer Directory. All rights reserved.
-              </p>
+              <p>&copy; {currentYear} The Influencer. All rights reserved.</p>
             </div>
           </div>
         </footer>
