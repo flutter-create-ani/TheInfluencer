@@ -173,33 +173,24 @@ export default function RootLayout({
                 <h3 className="font-semibold mb-4 text-white">Legal</h3>
                 <ul className="space-y-2">
                   <li>
-                    <button
-                      onClick={() =>
-                        openModal(
-                          "Privacy Policy",
-                          <p>Our privacy policy will be displayed here.</p>
-                        )
-                      }
-                      className="text-gray-400 hover:text-white transition-colors"
-                    >
-                      Privacy Policy
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() =>
-                        openModal(
-                          "Terms of Service",
-                          <p>Our terms of service will be displayed here.</p>
-                        )
-                      }
+                    <Link
+                      href="/termsandconditions"
                       className="text-gray-400 hover:text-white transition-colors"
                     >
                       Terms of Service
-                    </button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/privacypolicy"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Privacy Policy
+                    </Link>
                   </li>
                 </ul>
               </div>
+
               <div>
                 <h3 className="font-semibold mb-4 text-white">Follow Us</h3>
                 <div className="flex space-x-4">
