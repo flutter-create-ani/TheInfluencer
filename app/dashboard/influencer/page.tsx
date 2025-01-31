@@ -5,7 +5,7 @@ import { InfluencerGrid } from "./components/InfluencerGrid";
 export default function InfluencerDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* <Header /> */}
+      <Header />
 
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-4">Influencer Dashboard</h1>
