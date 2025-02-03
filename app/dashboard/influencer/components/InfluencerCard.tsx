@@ -23,22 +23,22 @@ export function InfluencerCard({
   posts,
 }: InfluencerCardProps) {
   return (
-    <Card className="bg-card text-white">
+    <Card className="bg-card text-white hover:scale-105 border-2 border-transparent hover:border-4 hover:border-[#6366F1] transition-transform duration-300 ease-in-out">
       <div className="p-4">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
             <div className="relative h-12 w-12">
               <Image
-                src={profileImage || "/placeholder.svg"}
-                alt="Profile"
+                src={profileImage}
+                alt={`${username} Profile`}
                 width={48}
                 height={48}
                 className="rounded-full object-cover"
               />
               <Badge className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-blue-500 p-0 flex items-center justify-center">
                 <Image
-                  src={platformIcon || "/placeholder.svg"}
-                  alt="Platform"
+                  src={platformIcon}
+                  alt={`${username} Platform`}
                   width={12}
                   height={12}
                 />
@@ -49,11 +49,7 @@ export function InfluencerCard({
               <p className="text-sm text-gray-400">{location}</p>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-white hover:text-white hover:bg-white/10"
-          >
+          <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white hover:scale-105 transition-transform duration-200">
             Analytics
           </Button>
         </div>
@@ -61,24 +57,27 @@ export function InfluencerCard({
       <div className="px-4 py-3 border-t border-white/10">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <p className="text-sm text-gray-400">Followers</p>
-            <p className="font-semibold">{followers}</p>
+            <p className="text-sm text-black">Followers</p>
+            <p className="font-semibold text-black">{followers}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-400">Eng. Rate</p>
-            <p className="font-semibold">{engagementRate}</p>
+            <p className="text-sm text-black">Eng. Rate</p>
+            <p className="font-semibold text-black">{engagementRate}</p>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-px bg-white/10">
+
+      <div className="grid grid-cols-3 gap-1 bg-white/10 mt-4 overflow-hidden rounded-lg">
         {posts.map((post, i) => (
-          <div key={i} className="aspect-square bg-card">
+          <div
+            key={i}
+            className="relative aspect-square bg-card overflow-hidden rounded-lg border-2 border-transparent hover:border-[#6366F1] hover:border-4 transition-all duration-200"
+          >
             <Image
-              src={post || "/placeholder.svg"}
-              alt={`Post ${i + 1}`}
-              width={150}
-              height={150}
-              className="object-cover w-full h-full"
+              src={post}
+              alt={`Post ${i + 1} by ${username}`}
+              fill
+              className="object-cover w-full h-full rounded-lg"
             />
           </div>
         ))}
@@ -86,4 +85,3 @@ export function InfluencerCard({
     </Card>
   );
 }
-  

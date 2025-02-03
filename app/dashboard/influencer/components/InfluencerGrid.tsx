@@ -7,114 +7,114 @@ import {
 } from "./ui/select";
 import { InfluencerCard } from "./InfluencerCard";
 
-const MOCK_INFLUENCERS = [
+const influencers = [
   {
-    username: "@cristiano",
-    location: "Portugal",
-    followers: "605M",
-    engagementRate: "2.1%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "John Doe",
+    location: "New York, USA",
+    followers: "120K",
+    engagementRate: "8.4%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@leomessi",
-    location: "Argentina",
-    followers: "493M",
-    engagementRate: "1.8%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "Jane Smith",
+    location: "Los Angeles, USA",
+    followers: "98K",
+    engagementRate: "7.2%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@selenagomez",
-    location: "United States",
-    followers: "429M",
-    engagementRate: "1.5%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "David Johnson",
+    location: "London, UK",
+    followers: "87K",
+    engagementRate: "6.5%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@kyliejenner",
-    location: "United States",
-    followers: "398M",
-    engagementRate: "1.2%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "Emily White",
+    location: "Paris, France",
+    followers: "105K",
+    engagementRate: "9.1%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@therock",
-    location: "United States",
-    followers: "389M",
-    engagementRate: "1.1%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "Michael Brown",
+    location: "Berlin, Germany",
+    followers: "76K",
+    engagementRate: "5.9%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@arianagrande",
-    location: "United States",
-    followers: "377M",
-    engagementRate: "1.0%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "Sophia Davis",
+    location: "Tokyo, Japan",
+    followers: "110K",
+    engagementRate: "7.8%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@kimkardashian",
-    location: "United States",
-    followers: "364M",
-    engagementRate: "0.9%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "Liam Wilson",
+    location: "Sydney, Australia",
+    followers: "89K",
+    engagementRate: "6.2%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@beyonce",
-    location: "United States",
-    followers: "319M",
-    engagementRate: "2.3%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "Olivia Martinez",
+    location: "Toronto, Canada",
+    followers: "115K",
+    engagementRate: "8.0%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@nike",
-    location: "United States",
-    followers: "303M",
-    engagementRate: "0.7%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "Noah Lee",
+    location: "Seoul, South Korea",
+    followers: "95K",
+    engagementRate: "6.9%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@natgeo",
-    location: "United States",
-    followers: "280M",
-    engagementRate: "0.5%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "Ava Thompson",
+    location: "Dubai, UAE",
+    followers: "130K",
+    engagementRate: "9.5%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@justinbieber",
-    location: "Canada",
-    followers: "292M",
-    engagementRate: "1.4%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "James Anderson",
+    location: "Mumbai, India",
+    followers: "100K",
+    engagementRate: "7.0%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
   {
-    username: "@taylorswift",
-    location: "United States",
-    followers: "272M",
-    engagementRate: "2.0%",
-    profileImage: "/placeholder.svg?height=48&width=48",
-    platformIcon: "/placeholder.svg?height=12&width=12",
-    posts: Array(3).fill("/placeholder.svg?height=150&width=150"),
+    username: "Emma Wilson",
+    location: "Rio de Janeiro, Brazil",
+    followers: "108K",
+    engagementRate: "7.7%",
+    profileImage: "/images/profile1.jpg",
+    platformIcon: "/images/platform1.svg",
+    posts: ["/images/post1.jpg", "/images/post1.jpg", "/images/post1.jpg"],
   },
 ];
 
@@ -123,10 +123,10 @@ export function InfluencerGrid() {
     <div className="space-y-6">
       <div className="flex justify-end">
         <Select defaultValue="highest">
-          <SelectTrigger className="w-[200px]">
+          <SelectTrigger className="w-[200px] bg-gray-800 text-white border-gray-600">
             <SelectValue placeholder="Sort by" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-white text-black border border-[--border]">
             <SelectItem value="highest">Highest Reach</SelectItem>
             <SelectItem value="lowest">Lowest Reach</SelectItem>
           </SelectContent>
@@ -134,10 +134,12 @@ export function InfluencerGrid() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {MOCK_INFLUENCERS.map((influencer) => (
-          <InfluencerCard key={influencer.username} {...influencer} />
+        {influencers.map((influencer, index) => (
+          <InfluencerCard key={index} {...influencer} />
         ))}
       </div>
     </div>
   );
 }
+
+export default InfluencerGrid;

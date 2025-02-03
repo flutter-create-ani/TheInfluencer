@@ -115,7 +115,7 @@ export default function RootLayout({
         </header>
         <main className="pt-16">{children}</main>
         <footer className="bg-[#0A0B1C]/80 backdrop-blur-sm border-t border-white/5">
-          <div className="container mx-auto px-4 py-12">
+          <div className="container mx-auto px-4 py-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
                 <h3 className="font-semibold mb-4 text-white">Company</h3>
