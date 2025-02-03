@@ -213,7 +213,7 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
-            <div className="mt-8 pt-8 border-t border-white/5 text-center text-gray-400">
+            <div className="mt-4 pt-4 border-t border-white/5 text-center text-gray-400">
               <p>&copy; {currentYear} The Influencer. All rights reserved.</p>
             </div>
           </div>
