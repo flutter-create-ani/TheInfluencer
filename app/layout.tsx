@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { CursorEffect } from "@/components/CursorEffect";
 import { FooterModal } from "@/components/FooterModal";
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
+import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -53,21 +54,14 @@ export default function RootLayout({
               transition={{ duration: 0.5 }}
             >
               <Link href="/" className="flex items-center space-x-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-6 w-6 text-[#6366F1]"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
+                <Image
+                  src="/images/The_Influencer.jpg"
+                  alt="The Influencer Logo"
+                  width={50}
+                  height={50}
+                  style={{ borderRadius: 25 }}
+                />
+
                 <span className="font-bold text-white">The Influencer </span>
               </Link>
             </motion.div>
@@ -115,7 +109,7 @@ export default function RootLayout({
         </header>
         <main className="pt-16">{children}</main>
         <footer className="bg-[#0A0B1C]/80 backdrop-blur-sm border-t border-white/5">
-          <div className="container mx-auto px-4 py-12">
+          <div className="container mx-auto px-4 py-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
                 <h3 className="font-semibold mb-4 text-white">Company</h3>
@@ -173,33 +167,24 @@ export default function RootLayout({
                 <h3 className="font-semibold mb-4 text-white">Legal</h3>
                 <ul className="space-y-2">
                   <li>
-                    <button
-                      onClick={() =>
-                        openModal(
-                          "Privacy Policy",
-                          <p>Our privacy policy will be displayed here.</p>
-                        )
-                      }
-                      className="text-gray-400 hover:text-white transition-colors"
-                    >
-                      Privacy Policy
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() =>
-                        openModal(
-                          "Terms of Service",
-                          <p>Our terms of service will be displayed here.</p>
-                        )
-                      }
+                    <Link
+                      href="/termsandconditions"
                       className="text-gray-400 hover:text-white transition-colors"
                     >
                       Terms of Service
-                    </button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/privacypolicy"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Privacy Policy
+                    </Link>
                   </li>
                 </ul>
               </div>
+
               <div>
                 <h3 className="font-semibold mb-4 text-white">Follow Us</h3>
                 <div className="flex space-x-4">
@@ -222,7 +207,7 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
-            <div className="mt-8 pt-8 border-t border-white/5 text-center text-gray-400">
+            <div className="mt-4 pt-4 border-t border-white/5 text-center text-gray-400">
               <p>&copy; {currentYear} The Influencer. All rights reserved.</p>
             </div>
           </div>

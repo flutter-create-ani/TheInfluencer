@@ -6,7 +6,7 @@
   :root {
     /* Background and Foreground Colors */
     --background: 230 50% 96%; /* Soft light background */
-    --foreground: 230 15% 10%; /* Darker text for contrast */
+    --foreground: 0 0% 100%; /* Darker text for contrast */
     --card: 230 50% 100%; /* Bright card backgrounds */
     --card-foreground: 230 15% 10%;
     --popover: 230 50% 100%;
