@@ -21,7 +21,7 @@
     --accent-foreground: 0 0% 15%;
     --destructive: 10 80% 56%; /* Bold red for warnings (YouTube vibe) */
     --destructive-foreground: 0 0% 100%;
-    --border: 230 20% 80%; /* Light neutral borders */
+    --border: hsl(230 20% 80%); /* Light neutral borders */
     --input: 230 20% 80%; /* Similar to border */
     --ring: 330 85% 58%; /* Vibrant ring color matching primary */
     --radius: 1rem; /* Slightly more rounded for modern aesthetics */
@@ -70,6 +70,16 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-y: scroll; /* Ensures scrollbar is always present */
   }
+
+  ::-webkit-scrollbar {
+    width: 0px; /* Keeps scrollbar space reserved */
+  }
+  /* Ensures Tailwind picks up this class */
+.hidden-class {
+  @apply hover:border-pink-500;
+}
+
 }
 

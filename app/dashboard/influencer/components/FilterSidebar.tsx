@@ -67,7 +67,7 @@ export function FilterSidebar() {
             Platform
           </label>
           <Select value={platform} onValueChange={setPlatform}>
-            <SelectTrigger className="w-full bg-[--background] border border-[--border] hover:border-[--primary] focus:border-[--primary] focus:ring-2 focus:ring-[--primary]/50 text-[--foreground]">
+            <SelectTrigger className="w-full bg-[--background] border border-[--border] hover:border-[--primary] focus-visible:border-[--primary] focus-visible:ring-2 focus-visible:ring-[--primary]/50 text-[--foreground] outline-none">
               <SelectValue placeholder="Select platform" />
             </SelectTrigger>
             <SelectContent className="bg-white text-black border border-[--border]">
@@ -111,7 +111,7 @@ export function FilterSidebar() {
             Category
           </label>
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="w-full bg-[--background] border border-[--border] hover:border-[--primary] focus:border-[--primary] focus:ring-2 focus:ring-[--primary]/50 text-[--foreground]">
+            <SelectTrigger className="w-full bg-[--background] border border-[--border] hover:border-[--primary] focus-visible:border-[--primary] focus-visible:ring-2 focus-visible:ring-[--primary]/50 text-[--foreground] outline-none">
               <SelectValue placeholder="Select..." />
             </SelectTrigger>
             <SelectContent className="bg-white text-black border border-[--border]">
@@ -178,7 +178,7 @@ export function FilterSidebar() {
                 placeholder="Min"
                 value={engagementRateMin}
                 onChange={(e) => setEngagementRateMin(e.target.value)}
-                className="w-full bg-[--background] border border-[--border] hover:border-[--primary] focus:border-[--primary] focus:ring-2 focus:ring-[--primary]/50 text-[--foreground] placeholder:text-[--muted-foreground] pr-8"
+                className="w-full bg-[--background] border border-[--border] hover:border-[--primary] focus:border-[--primary] focus:ring-1 focus:ring-[--primary]/50 text-[--foreground] placeholder:text-[--muted-foreground] pr-8"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[--muted-foreground]">
                 %
@@ -189,7 +189,7 @@ export function FilterSidebar() {
                 placeholder="Max"
                 value={engagementRateMax}
                 onChange={(e) => setEngagementRateMax(e.target.value)}
-                className="w-full bg-[--background] border border-[--border] hover:border-[--primary] focus:border-[--primary] focus:ring-2 focus:ring-[--primary]/50 text-[--foreground] placeholder:text-[--muted-foreground] pr-8"
+                className="w-full bg-[--background] border border-[--border] hover:border-[--primary] focus:border-[--primary] focus:ring-1 focus:ring-[--primary]/50 text-[--foreground] placeholder:text-[--muted-foreground] pr-8"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[--muted-foreground]">
                 %
@@ -200,13 +200,14 @@ export function FilterSidebar() {
 
         {/* Buttons */}
         <div className="space-y-3">
-          <Button className="w-full bg-[--primary] hover:bg-[--primary]/90 text-[--primary-foreground]">
+          <Button className="w-full border border-neutral-300 bg-[--background] hover:bg-[--background]/80 hover:border-pink-500 text-[--foreground]  hover:text-[--foreground] transition-all duration-300 active:scale-95 focus:ring-2 focus:ring-pink-500"
+          >
             Search
           </Button>
           <Button
             variant="outline"
             onClick={handleClearAll}
-            className="w-full border border-[--border] bg-[--background] hover:bg-[--background]/80 text-[--foreground]"
+            className="w-full border border-neutral-300 bg-[--background] hover:bg-[--background]/80 hover:border-pink-500 text-[--foreground] hover:text-[--foreground] transition-all duration-300 active:scale-95 focus:ring-2 focus:ring-pink-500"
           >
             Clear All
           </Button>
