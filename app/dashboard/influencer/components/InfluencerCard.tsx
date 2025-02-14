@@ -23,7 +23,8 @@ export function InfluencerCard({
   posts,
 }: InfluencerCardProps) {
   return (
-    <Card className="bg-card text-white hover:scale-105 border-2 border-transparent hover:border-4 hover:border-[#6366F1] transition-transform duration-300 ease-in-out">
+    <Card className="bg-card text-white h-full flex flex-col justify-between hover:scale-105 border-2 border-transparent hover:border-4 hover:border-[#6366F1] transition-transform duration-300 ease-in-out">
+
       <div className="p-4">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
@@ -33,9 +34,9 @@ export function InfluencerCard({
                 alt={`${username} Profile`}
                 width={48}
                 height={48}
-                className="rounded-full object-cover"
+                className="rounded-full object-cover w-full h-full"
               />
-              <Badge className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-blue-500 p-0 flex items-center justify-center">
+              <Badge className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-white-500 p-0 flex items-center justify-center">
                 <Image
                   src={platformIcon}
                   alt={`${username} Platform`}
@@ -54,7 +55,8 @@ export function InfluencerCard({
           </Button>
         </div>
       </div>
-      <div className="px-4 py-3 border-t border-white/10">
+      <div className="<px-4 py-3 border-t border-white/10 min-h-[80px] flex flex-col justify-center">
+
         <div className="grid grid-cols-2 gap-4">
           <div>
             <p className="text-sm text-black">Followers</p>
@@ -71,7 +73,8 @@ export function InfluencerCard({
         {posts.map((post, i) => (
           <div
             key={i}
-            className="relative aspect-square bg-card overflow-hidden rounded-lg border-2 border-transparent hover:border-[#6366F1] hover:border-4 transition-all duration-200"
+            className="relative aspect-square bg-card overflow-hidden rounded-lg border-2 border-transparent text-card-foreground shadow-sm transition-transform duration-200 hover:scale-105"
+/*hover:border-[#f1aa63] hover:border-4 transition-all duration-200"*/
           >
             <Image
               src={post}
