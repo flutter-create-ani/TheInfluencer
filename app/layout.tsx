@@ -191,7 +191,7 @@ export default function RootLayout({
                   {[
                     { Icon: FaTwitter, href: "/twitter" },
                     { Icon: FaInstagram, href: "/instagram" },
-                    { Icon: FaLinkedin, href: "/linkedin" },
+                    { Icon: FaLinkedin, href: "https://www.linkedin.com/company/theinfluencer001/posts/?feedView=all" },
                     { Icon: FaFacebook, href: "/facebook" },
                   ].map(({ Icon, href }, index) => (
                     <motion.a
