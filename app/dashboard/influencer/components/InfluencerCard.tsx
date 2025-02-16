@@ -1,7 +1,11 @@
+"use client"
+import { useState } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { Modal } from "@/components/ui/Modal";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 interface InfluencerCardProps {
   username: string;
@@ -22,6 +26,11 @@ export function InfluencerCard({
   platformIcon,
   posts,
 }: InfluencerCardProps) {
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
+  const data= [
+    { name: "Followers", value: parseInt(followers.replace(/,/g, "")) },
+    { name: "Eng. Rate", value: parseFloat(engagementRate) },
+  ];
   return (
     <Card className="bg-card text-white h-full flex flex-col justify-between hover:scale-105 border-2 border-transparent hover:border-4 hover:border-[#6366F1] transition-transform duration-300 ease-in-out">
 
@@ -50,7 +59,11 @@ export function InfluencerCard({
               <p className="text-sm text-gray-400">{location}</p>
             </div>
           </div>
-          <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white hover:scale-105 transition-transform duration-200">
+          <Button 
+            className="bg-[#6366F1] hover:bg-[#5355E8] text-white hover:scale-105 transition-transform duration-200"
+            onClick={() => setIsAnalyticsOpen(true)} // Opens the modal
+            >
+
             Analytics
           </Button>
         </div>
@@ -74,7 +87,7 @@ export function InfluencerCard({
           <div
             key={i}
             className="relative aspect-square bg-card overflow-hidden rounded-lg border-2 border-transparent text-card-foreground shadow-sm transition-transform duration-200 hover:scale-105"
-/*hover:border-[#f1aa63] hover:border-4 transition-all duration-200"*/
+                 /*hover:border-[#f1aa63] hover:border-4 transition-all duration-200"*/
           >
             <Image
               src={post}
@@ -85,6 +98,21 @@ export function InfluencerCard({
           </div>
         ))}
       </div>
+      {isAnalyticsOpen && (
+      <Modal  
+              isOpen={isAnalyticsOpen}
+               onClose={() => setIsAnalyticsOpen(false)} title="Analytics Data">
+              <ResponsiveContainer width="100%" height={200}>
+             <BarChart layout="vertical" data={data}>
+              <XAxis type="number" hide />
+              <YAxis type="category" dataKey="name" width={80} />
+              <Tooltip />
+               <Bar dataKey="value" fill="#6366F1" barSize={30} radius={[5, 5, 5, 5]}/>
+           </BarChart>
+      </ResponsiveContainer>
+      </Modal>
+   
+     )}
     </Card>
   );
 }
