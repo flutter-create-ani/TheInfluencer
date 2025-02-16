@@ -24,7 +24,8 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/login", {
+      // Make a POST request to your backend API
+      const response = await fetch("https://theinfluencer.in/v1/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,29 +33,39 @@ export default function LoginPage() {
         body: JSON.stringify({
           email,
           password,
-          role: role.toLowerCase(),
+          user_type: role.toLowerCase(), // Match the API's expected field name
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
       const data = await response.json();
 
-      if (data.status === "success") {
-        router.push(data.redirectTo);
+      if (!response.ok) {
+        // Handle API errors
+        throw new Error(data.error || "Invalid credentials or server error");
+      }
+
+      // Handle successful login
+      if (data.message === "Login successful.") {
+        // Save the token and user data in localStorage
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        // Redirect to the appropriate dashboard based on the user's role
+        router.push(`/dashboard/${data.user.user_type}`);
       } else {
-        setError(data.message || "An error occurred during login");
+        setError(data.error || "An error occurred during login");
       }
     } catch (err) {
       console.error("Login error:", err);
-      setError("An error occurred during login. Please try again.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "An error occurred during login. Please try again."
+      );
     } finally {
       setIsLoading(false);
     }
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-red-400 py-12 px-4 sm:px-6 lg:px-8">
       <Card className="w-full max-w-md bg-white shadow-xl rounded-lg">
