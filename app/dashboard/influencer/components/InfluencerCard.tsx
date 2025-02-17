@@ -32,7 +32,8 @@ export function InfluencerCard({
     { name: "Eng. Rate", value: parseFloat(engagementRate) },
   ];
   return (
-    <Card className="bg-card text-white h-full flex flex-col justify-between hover:scale-105 border-2 border-transparent hover:border-4 hover:border-[#6366F1] transition-transform duration-300 ease-in-out">
+    <Card className="bg-card text-white h-full flex flex-col justify-between hover:scale-105 border-2 border-transparent hover:border-4 hover:border-[#6366F1] transition-transform duration-300 ease-in-out overflow-hidden">
+
 
       <div className="p-4">
         <div className="flex items-start justify-between">

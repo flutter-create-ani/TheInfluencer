@@ -1,18 +1,21 @@
 import { FilterSidebar } from "./components/FilterSidebar";
 import { InfluencerGrid } from "./components/InfluencerGrid";
+ import content from "@/lib/content";
 
 export default function InfluencerDashboard() {
   return (
     <div className="min-h-screen bg-[--background] text-[--foreground]">
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-4 text-center transition-transform duration-300 text-pink-600">
-          <span className="inline-block hover:text-[--primary] transform hover:scale-105 transition-all">
+        <h1 className="text-4xl font-bold mb-4 text-center transition-transform duration-300 text-white-600 hover:text-pink-600">
+          <span className="inline-block transform hover:scale-105 transition-all">
             Influencer Dashboard
           </span>
         </h1>
-        <p className="text-xl mb-8 text-center transition-transform duration-300 text-white-500">
-          <span className="inline-block hover:text-[--primary] transform hover:scale-105 transition-all">
+        <p className="text-xl mb-8 text-center transition-transform duration-300 text-white-500 hover:text-pink-500">
+          <span className="inline-block transform hover:scale-105 transition-all">
             Welcome to your influencer dashboard!
+            
+            {content.influencerMessage}
           </span>
         </p>
 
