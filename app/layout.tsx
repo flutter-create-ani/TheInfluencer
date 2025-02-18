@@ -43,12 +43,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-<<<<<<< HEAD
       <body className={`${inter.className} min-h-screen bg-[#0A0B1C]`}>
-=======
-      <body className={`${inter.className} min-h-screen bg-[#0A0B1C] overflow-y-scroll`}>
-        <CursorEffect />
->>>>>>> d4d747fedc07e40ee10b59eddd89cbd794cad1b7
         <header className="fixed top-0 w-full z-50 bg-[#0A0B1C]/80 backdrop-blur-sm border-b border-white/5">
           <nav className="container mx-auto flex items-center justify-between h-16 px-4">
             <motion.div
@@ -194,7 +189,10 @@ export default function RootLayout({
                   {[
                     { Icon: FaTwitter, href: "/twitter" },
                     { Icon: FaInstagram, href: "/instagram" },
-                    { Icon: FaLinkedin, href: "https://www.linkedin.com/company/theinfluencer001/posts/?feedView=all" },
+                    {
+                      Icon: FaLinkedin,
+                      href: "https://www.linkedin.com/company/theinfluencer001/posts/?feedView=all",
+                    },
                     { Icon: FaFacebook, href: "/facebook" },
                   ].map(({ Icon, href }, index) => (
                     <motion.a
@@ -211,7 +209,7 @@ export default function RootLayout({
               </div>
             </div>
             <div className="mt-4 pt-4 border-t border-white/5 text-center text-gray-400">
-              <p>&copy; {currentYear} The Influencer. All rights reserved.</p>
+              <p>© {currentYear} The Influencer. All rights reserved.</p>
             </div>
           </div>
         </footer>
