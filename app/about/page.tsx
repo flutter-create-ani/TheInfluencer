@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <div className="py-20 bg-[#0A0B1C]">
+    <div className="py-10 bg-[#0A0B1C]">
       <div className="container px-4">
         <div className="text-center space-y-4 mb-16">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">

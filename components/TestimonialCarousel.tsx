@@ -5,42 +5,44 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [
   {
-    id: 1,
-    text: "Influencer Directory has transformed our marketing strategy. We've seen a 200% increase in engagement!",
-    name: "Sarah Johnson",
-    title: "Marketing Director, TechCorp",
+    "id": 1,
+    "text": "A game-changing platform that has redefined how I connect with audiences and collaborate seamlessly.",
+    "name": "Bhuvan Bam",
+    "title": "YouTuber & Content Creator, BB Ki Vines"
   },
   {
-    id: 2,
-    text: "The platform's AI-powered search made finding the perfect influencers for our niche incredibly easy.",
-    name: "Mike Chen",
-    title: "CEO, FitnessPro",
+    "id": 2,
+    "text": "Finding the right brands to collaborate with has become effortless, allowing me to focus on creativity without any hassle.",
+    "name": "CarryMinati",
+    "title": "YouTuber & Roaster, CarryMinati"
   },
   {
-    id: 3,
-    text: "The analytics provided by Influencer Directory have been invaluable for measuring our campaign ROI.",
-    name: "Emily Rodriguez",
-    title: "Social Media Manager, BeautyBrands",
+    "id": 3,
+    "text": "Data-driven insights have helped refine my approach, ensuring better reach and stronger engagement with my audience.",
+    "name": "Amit Bhadana",
+    "title": "YouTuber & Comedian, Amit Bhadana"
   },
   {
-    id: 4,
-    text: "We've been able to reach new markets effortlessly thanks to the global reach of this platform.",
-    name: "Alex Thompson",
-    title: "Growth Hacker, StartupX",
+    "id": 4,
+    "text": "New collaboration opportunities have expanded my audience, making a larger impact possible.",
+    "name": "Ashish Chanchlani",
+    "title": "YouTuber & Entertainer, Ashish Chanchlani Vines"
   },
   {
-    id: 5,
-    text: "The customer support team is phenomenal. They've been there every step of the way as we scaled our influencer program.",
-    name: "Lisa Wong",
-    title: "Influencer Relations, FashionForward",
-  },
+    "id": 5,
+    "text": "An outstanding experience! The support team has been exceptional, providing guidance at every step to enhance my journey.",
+    "name": "Technical Guruji",
+    "title": "YouTuber & Tech Reviewer, Technical Guruji"
+  }
 ];
 
 export const TestimonialCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
 
   useEffect(() => {
     const timer = setInterval(() => {
+      setDirection(1);
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
     }, 5000);
 
@@ -48,39 +50,43 @@ export const TestimonialCarousel = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden h-80 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-lg">
-      <AnimatePresence initial={false}>
+    <div className="relative overflow-hidden h-96 w-full max-w-3xl mx-auto bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 rounded-2xl shadow-xl p-8 flex items-center justify-center">
+      <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0, y: 50, rotateX: -15 }}
-          animate={{ opacity: 1, y: 0, rotateX: 0 }}
-          exit={{ opacity: 0, y: -50, rotateX: 15 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 flex items-center justify-center p-6 text-center"
+          initial={{ opacity: 0, x: 100 * direction }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 * direction }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="absolute inset-0 flex items-center justify-center px-6 text-center"
         >
-          <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-6 max-w-2xl">
-            <p className="text-xl text-white mb-4">
+          <div className="bg-white/20 backdrop-blur-md rounded-2xl shadow-lg p-8 max-w-lg border border-white/30">
+            <p className="text-lg md:text-xl font-medium text-white italic leading-relaxed">
               &ldquo;{testimonials[currentIndex].text}&rdquo;
             </p>
-            <p className="font-semibold text-white">
-              {testimonials[currentIndex].name}
-            </p>
-            <p className="text-sm text-gray-300">
-              {testimonials[currentIndex].title}
-            </p>
+            <div className="mt-6">
+              <p className="text-lg font-semibold text-white">{testimonials[currentIndex].name}</p>
+              <p className="text-sm text-gray-300">{testimonials[currentIndex].title}</p>
+            </div>
           </div>
         </motion.div>
       </AnimatePresence>
-      <div className="absolute bottom-0 left-4 top-0 flex flex-col justify-center space-y-2">
+
+      {/* Navigation Dots */}
+      <div className="absolute bottom-4 flex space-x-2">
         {testimonials.map((_, index) => (
           <motion.div
             key={index}
-            className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-white" : "bg-white bg-opacity-50"
+            className={`w-3 h-3 rounded-full cursor-pointer ${
+              index === currentIndex ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
             }`}
             initial={false}
-            animate={{ scale: index === currentIndex ? 1.2 : 1 }}
+            animate={{ scale: index === currentIndex ? 1.3 : 1 }}
             transition={{ duration: 0.3 }}
+            onClick={() => {
+              setDirection(index > currentIndex ? 1 : -1);
+              setCurrentIndex(index);
+            }}
           />
         ))}
       </div>
