@@ -43,12 +43,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-<<<<<<< HEAD
+{/* <<<<<<< HEAD
       <body className={`${inter.className} min-h-screen bg-[#0A0B1C]`}>
-=======
+======= */}
       <body className={`${inter.className} min-h-screen bg-[#0A0B1C] overflow-y-scroll`}>
-        <CursorEffect />
->>>>>>> d4d747fedc07e40ee10b59eddd89cbd794cad1b7
+        {/* <CursorEffect /> */}
+{/* >>>>>>> d4d747fedc07e40ee10b59eddd89cbd794cad1b7 */}
         <header className="fixed top-0 w-full z-50 bg-[#0A0B1C]/80 backdrop-blur-sm border-b border-white/5">
           <nav className="container mx-auto flex items-center justify-between h-16 px-4">
             <motion.div

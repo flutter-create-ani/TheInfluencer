@@ -5,22 +5,22 @@ import jwt from "jsonwebtoken";
 const users = [
   {
     user_id: "user001",
-    email: "vipin@gmail.com",
-    password: "0000000",
+    email: "Test@example.com",
+    password: "Test1234",
     role: "influencer",
     name: "Vipin",
   },
   {
     user_id: "user002",
-    email: "jane_smith@example.com",
-    password: "securepass456",
+    email: "Test@example.com",
+    password: "Test1234",
     role: "brand",
     name: "Jane Smith",
   },
   {
     user_id: "user003",
-    email: "mike_admin@example.com",
-    password: "admin@789",
+    email: "Test@example.com",
+    password: "Test1234",
     role: "admin",
     name: "Mike Admin",
   },
