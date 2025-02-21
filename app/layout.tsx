@@ -4,11 +4,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { useState } from "react";
-// import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-// import { CursorEffect } from "@/components/CursorEffect";
 import { FooterModal } from "@/components/FooterModal";
-import {  FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -17,6 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [modalContent, setModalContent] = useState<{
     title: string;
     content: React.ReactNode | null;
@@ -44,7 +44,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen bg-[#0A0B1C] text-white`}>
-        
         <header className="fixed top-0 w-full z-50 bg-[#0A0B1C]/90 backdrop-blur-md border-b border-white/10">
           <nav className="container mx-auto flex items-center justify-between h-16 px-6">
             <motion.div
@@ -53,10 +52,15 @@ export default function RootLayout({
               transition={{ duration: 0.5 }}
             >
               <Link href="/" className="flex items-center space-x-3">
-                <img src="/2.png" alt="Logo" className="h-10 w-10 object-cover rounded-full" />
+                <img
+                  src="/2.png"
+                  alt="Logo"
+                  className="h-10 w-10 object-cover rounded-full"
+                />
                 <span className="text-lg font-bold">The Influencer</span>
               </Link>
             </motion.div>
+            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-6">
               {["Home", "About", "Features", "Contact"].map((item, index) => (
                 <motion.div
@@ -75,7 +79,34 @@ export default function RootLayout({
                 </motion.div>
               ))}
             </div>
+            {/* Mobile Menu Toggle */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setMobileNavOpen(!mobileNavOpen)}
+                className="text-gray-300 hover:text-white transition-colors focus:outline-none"
+              >
+                {mobileNavOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              </button>
+            </div>
           </nav>
+          {/* Mobile Navigation Menu */}
+          {mobileNavOpen && (
+            <div className="md:hidden bg-[#0A0B1C] border-t border-white/10">
+              <ul className="flex flex-col items-center space-y-4 py-4">
+                {["Home", "About", "Features", "Contact"].map((item) => (
+                  <li key={item}>
+                    <Link
+                      href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                      onClick={() => setMobileNavOpen(false)}
+                      className="text-base text-gray-300 hover:text-white transition-colors"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </header>
         <main className="pt-20 container mx-auto px-6">{children}</main>
         <footer className="bg-[#0A0B1C] border-t border-white/10 mt-10 py-8 text-center">
@@ -84,10 +115,20 @@ export default function RootLayout({
               <h3 className="font-semibold mb-3">Company</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link>
+                  <Link
+                    href="/about"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    About Us
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link>
+                  <Link
+                    href="/contact"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Contact
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -95,23 +136,76 @@ export default function RootLayout({
               <h3 className="font-semibold mb-3">Resources</h3>
               <ul className="space-y-2">
                 <li>
-                  <button onClick={() => openModal("Blog", <p>Coming Soon......</p>)} className="text-gray-300 hover:text-white transition-colors">Blog</button>
+                  <button
+                    onClick={() =>
+                      openModal("Blog", <p>Coming Soon......</p>)
+                    }
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Blog
+                  </button>
                 </li>
                 <li>
-                  <button onClick={() => openModal("Support", <p>Effective Date: February 21, 2025<br /><br />
-                  <strong>Support Information:</strong><br />
-                  At The Influencer, we are committed to providing top-notch support to our users. If you encounter any issues or have inquiries, please reach out through the following channels:<br /><br />
-                  <strong>1. Email Support:</strong><br />
-                  Reach us at <a href="mailto:theinfluencer1001@gmail.com" className="text-blue-400">theinfluencer1001@gmail.com</a>. We typically respond within 24-48 hours.<br /><br />
-                  <strong>2. Help Center:</strong><br />
-                  Visit our Help Center for FAQs, troubleshooting guides, and self-help resources. <a href="mailto:theinfluencer1001@gmail.com" className="text-blue-400">Click here</a> to access.<br /><br />
-                  <strong>3. Community Forum:</strong><br />
-                  Join our community forum where users share experiences, ask questions, and get solutions from other members and moderators.<br /><br />
-                  <strong>4. Live Chat (Coming Soon):</strong><br />
-                  We are working on integrating live chat support for instant assistance.<br /><br />
-                  Your feedback is valuable to us. If you have suggestions on how we can improve, please let us know.<br /><br />
-                  Best Regards,<br />
-                  The Influencer Support Team</p>)} className="text-gray-300 hover:text-white transition-colors">Support</button>
+                  <button
+                    onClick={() =>
+                      openModal(
+                        "Support",
+                        <p>
+                          Effective Date: February 21, 2025
+                          <br />
+                          <br />
+                          <strong>Support Information:</strong>
+                          <br />
+                          At The Influencer, we are committed to providing top-notch support to our users. If you encounter any issues or have inquiries, please reach out through the following channels:
+                          <br />
+                          <br />
+                          <strong>1. Email Support:</strong>
+                          <br />
+                          Reach us at{" "}
+                          <a
+                            href="mailto:theinfluencer1001@gmail.com"
+                            className="text-blue-400"
+                          >
+                            theinfluencer1001@gmail.com
+                          </a>
+                          . We typically respond within 24-48 hours.
+                          <br />
+                          <br />
+                          <strong>2. Help Center:</strong>
+                          <br />
+                          Visit our Help Center for FAQs, troubleshooting guides, and self-help resources.{" "}
+                          <a
+                            href="mailto:theinfluencer1001@gmail.com"
+                            className="text-blue-400"
+                          >
+                            Click here
+                          </a>{" "}
+                          to access.
+                          <br />
+                          <br />
+                          <strong>3. Community Forum:</strong>
+                          <br />
+                          Join our community forum where users share experiences, ask questions, and get solutions from other members and moderators.
+                          <br />
+                          <br />
+                          <strong>4. Live Chat (Coming Soon):</strong>
+                          <br />
+                          We are working on integrating live chat support for instant assistance.
+                          <br />
+                          <br />
+                          Your feedback is valuable to us. If you have suggestions on how we can improve, please let us know.
+                          <br />
+                          <br />
+                          Best Regards,
+                          <br />
+                          The Influencer Support Team
+                        </p>
+                      )
+                    }
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Support
+                  </button>
                 </li>
               </ul>
             </div>
@@ -119,34 +213,94 @@ export default function RootLayout({
               <h3 className="font-semibold mb-3">Legal</h3>
               <ul className="space-y-2">
                 <li>
-                  <button onClick={() => openModal("Privacy Policy", <p>Effective Date: February 21, 2025<br /><br />
-                  <strong>Privacy Policy:</strong><br />
-                  We respect your privacy and are committed to protecting your personal data. We collect minimal personal information necessary to provide our services and improve user experience. We do not sell, rent, or distribute your data to third parties. Users have full control over their data and can request modifications or deletions.<br /><br />
-                  Contact us at: theinfluencer1001@gmail.com.</p>)} className="text-gray-300 hover:text-white transition-colors">Privacy Policy</button>
+                  <button
+                    onClick={() =>
+                      openModal(
+                        "Privacy Policy",
+                        <p>
+                          Effective Date: February 21, 2025
+                          <br />
+                          <br />
+                          <strong>Privacy Policy:</strong>
+                          <br />
+                          We respect your privacy and are committed to protecting your personal data. We collect minimal personal information necessary to provide our services and improve user experience. We do not sell, rent, or distribute your data to third parties. Users have full control over their data and can request modifications or deletions.
+                          <br />
+                          <br />
+                          Contact us at: theinfluencer1001@gmail.com.
+                        </p>
+                      )
+                    }
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Privacy Policy
+                  </button>
                 </li>
                 <li>
-                  <button onClick={() => openModal("Terms of Service", <p>Effective Date: February 21, 2025<br /><br />
-                  <strong>Terms of Service:</strong><br />
-                  By using The Influencer, you agree to comply with our policies. Users must respect intellectual property rights, refrain from prohibited activities, and ensure their content abides by applicable laws. We reserve the right to suspend or terminate accounts that violate these terms.<br /><br />
-                  Users are responsible for maintaining the security of their accounts. We are not liable for damages resulting from misuse or unauthorized access.<br /><br />
-                  For any inquiries, contact us at: theinfluencer1001@gmail.com.</p>)} className="text-gray-300 hover:text-white transition-colors">Terms of Service</button>
+                  <button
+                    onClick={() =>
+                      openModal(
+                        "Terms of Service",
+                        <p>
+                          Effective Date: February 21, 2025
+                          <br />
+                          <br />
+                          <strong>Terms of Service:</strong>
+                          <br />
+                          By using The Influencer, you agree to comply with our policies. Users must respect intellectual property rights, refrain from prohibited activities, and ensure their content abides by applicable laws. We reserve the right to suspend or terminate accounts that violate these terms.
+                          <br />
+                          <br />
+                          Users are responsible for maintaining the security of their accounts. We are not liable for damages resulting from misuse or unauthorized access.
+                          <br />
+                          <br />
+                          For any inquiries, contact us at: theinfluencer1001@gmail.com.
+                        </p>
+                      )
+                    }
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Terms of Service
+                  </button>
                 </li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-3">Follow Us</h3>
               <div className="flex space-x-4 justify-center">
-                {[ { Icon: FaInstagram, href: "https://www.instagram.com/theinfluencer1001/" }, { Icon: FaLinkedin, href: "https://www.linkedin.com/company/theinfluencer001/posts/?feedView=all" }].map(({ Icon, href }, index) => (
-                  <motion.a key={index} href={href} className="text-gray-400 hover:text-white transition-colors" variants={socialIconVariants} whileHover="hover">
+                {[
+                  {
+                    Icon: FaInstagram,
+                    href: "https://www.instagram.com/theinfluencer1001/",
+                  },
+                  {
+                    Icon: FaLinkedin,
+                    href: "https://www.linkedin.com/company/theinfluencer001/posts/?feedView=all",
+                  },
+                ].map(({ Icon, href }, index) => (
+                  <motion.a
+                    key={index}
+                    href={href}
+                    className="text-gray-400 hover:text-white transition-colors"
+                    variants={socialIconVariants}
+                    whileHover="hover"
+                  >
                     <Icon className="h-6 w-6" />
                   </motion.a>
                 ))}
               </div>
             </div>
           </div>
-          <div className="mt-6 text-gray-400 text-xs">&copy; {currentYear} The Influencer. All rights reserved.</div>
+          <div className="mt-6 text-gray-400 text-xs">
+            &copy; {currentYear} The Influencer. All rights reserved.
+          </div>
         </footer>
-        <FooterModal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={modalContent.title} content={modalContent.content || <p>No content available.</p>} />
+        <FooterModal
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          title={modalContent.title}
+          content={
+            modalContent.content || <p>No content available.</p>
+          }
+        />
       </body>
     </html>
   );

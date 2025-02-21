@@ -46,7 +46,7 @@ export default function Home() {
 
   const [iframeUrl, setIframeUrl] = useState<string | null>(null);
 
-  // Handle Escape key press to close the iframe
+  // Close iframe on Escape key press
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setIframeUrl(null);
@@ -67,9 +67,9 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative py-2 md:py-10 overflow-hidden">
+      <section className="relative py-4 md:py-10 overflow-hidden">
         <div className="absolute inset-0 bg-[#0A0B1C]" />
-        <div className="container relative px-2 space-y-12 text-center">
+        <div className="container mx-auto px-6 space-y-12 text-center relative">
           <motion.div
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -94,11 +94,14 @@ export default function Home() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="text-center px-4"
+            className="px-4"
           >
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight text-white drop-shadow-lg">
               Find the Perfect{" "}
-              <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+              <span
+                className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent inline-block"
+                style={{ minWidth: "clamp(250px, 400px, 100%)" }}
+              >
                 <TypingAnimation />
               </span>
               <br className="hidden sm:block" /> for Your Brand
@@ -125,8 +128,8 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="flex flex-col items-center gap-4"
           >
-            {/* Buttons */}
-            <div className="flex space-x-4">
+            {/* Registration Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
                 className="bg-[#6366F1] hover:bg-[#5355E8] text-white"
@@ -145,7 +148,7 @@ export default function Home() {
               </Button>
             </div>
 
-            {/* Overlay with iframe */}
+            {/* Modal Overlay with iframe */}
             <AnimatePresence>
               {iframeUrl && (
                 <motion.div
@@ -181,6 +184,7 @@ export default function Home() {
             </AnimatePresence>
           </motion.div>
 
+          {/* Social Icons */}
           <div className="pt-8">
             <motion.p
               initial={{ opacity: 0 }}
@@ -249,13 +253,13 @@ export default function Home() {
       {/* Testimonials Section */}
       <ScrollAnimatedSection>
         <section className="py-20 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl max-w-7xl mx-auto">
-          <div className="container px-4">
+          <div className="container mx-auto px-6">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
                 Testimonials To Our Work
               </h2>
               <p className="mx-auto max-w-[600px] text-gray-200">
-              Discover what industry experts are saying about the impact and potential of influencer marketing.
+                Discover what industry experts are saying about the impact and potential of influencer marketing.
               </p>
             </div>
             <TestimonialCarousel />
@@ -266,17 +270,16 @@ export default function Home() {
       {/* Features Section */}
       <ScrollAnimatedSection>
         <section className="py-20">
-          <div className="container px-4">
+          <div className="container mx-auto px-6">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
                 Powerful Features
               </h2>
               <p className="mx-auto max-w-[600px] text-gray-400">
-                Everything you need to find and connect with the right
-                influencers
+                Everything you need to find and connect with the right influencers.
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   icon: Search,
