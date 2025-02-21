@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import page from "@/lib/page";
 
 const plans = [
   {
@@ -55,7 +56,8 @@ export default function PricingPage() {
         <div className="text-center space-y-4 mb-16">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
             Simple, Transparent Pricing
-          </h1>
+          </h1>{page.pricing}
+          
           <p className="mx-auto max-w-[600px] text-foreground/60">
             Choose the plan that is right for you
           </p>

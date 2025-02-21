@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Filter, Globe, Star, Users, BarChart } from "lucide-react";
+import page from "@/lib/page";
 
 const features = [
   {
@@ -48,7 +49,7 @@ export default function FeaturesPage() {
         <div className="text-center space-y-4 mb-16">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
             Our Powerful Features
-          </h1>
+          </h1>{page.features}
           <p className="mx-auto max-w-[600px] text-gray-400">
             Discover the tools that make Influencer Directory the leading
             platform for influencer marketing

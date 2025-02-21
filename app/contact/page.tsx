@@ -9,6 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone } from "lucide-react";
+import page from "@/lib/page";
 
 export default function ContactPage() {
   return (
@@ -17,7 +18,7 @@ export default function ContactPage() {
         <div className="text-center space-y-4 mb-16">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white animate-fadeIn">
             Get in Touch
-          </h1>
+          </h1>{page.contact}
           <p className="mx-auto max-w-[600px] text-gray-300 animate-fadeIn delay-200">
             We would love to hear from you. Please fill out this form or contact
             us using the information below.

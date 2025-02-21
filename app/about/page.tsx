@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import page from "@/lib/page";
 
 export default function AboutPage() {
   return (
@@ -8,7 +9,7 @@ export default function AboutPage() {
         <div className="text-center space-y-4 mb-16">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
             About Influencer Directory
-          </h1>
+          </h1>{page.about}
           <p className="mx-auto max-w-[600px] text-gray-400">
             Connecting brands with the perfect influencers since 2023
           </p>

@@ -4,14 +4,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation"; // Imported to check the route
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { FooterModal } from "@/components/FooterModal";
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
 import Image from "next/image";
+
 const inter = Inter({ subsets: ["latin"] });
-
-
 
 export default function RootLayout({
   children,
@@ -28,6 +28,10 @@ export default function RootLayout({
     setModalContent({ title, content });
     setModalOpen(true);
   };
+
+  const pathname = usePathname();
+  const shouldShowHeader = pathname !== "/dashboard/brand" && pathname !== "/dashboard/influencer";
+ // Condition to hide header on influencer dashboard
 
   const navItemVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -46,71 +50,74 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen bg-[#0A0B1C] flex flex-col`}>
-         <header className="fixed top-0 w-full z-50 bg-[#0A0B1C]/80 backdrop-blur-sm border-b border-white/5">
-          <nav className="container mx-auto flex items-center justify-between h-16 px-4">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Link href="/" className="flex items-center space-x-2">
-                <Image
-                  src="/images/The_Influencer.jpg"
-                  alt="The Influencer Logo"
-                  width={50}
-                  height={50}
-                  style={{ borderRadius: 25 }}
-                />
-
-                <span className="font-bold text-white">The Influencer </span>
-              </Link>
-            </motion.div>
-            <div className="hidden md:flex space-x-6">
-              {["Home", "About", "Features", "Pricing", "Contact"].map(
-                (item, index) => (
-                  <motion.div
-                    key={item}
-                    variants={navItemVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Link
-                      href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      className="text-sm text-gray-400 hover:text-white transition-colors"
+        {shouldShowHeader && ( // Only render header if shouldShowHeader is true
+          <header className="fixed top-0 w-full z-50 bg-[#0A0B1C]/80 backdrop-blur-sm border-b border-white/5">
+            <nav className="container mx-auto flex items-center justify-between h-16 px-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Link href="/" className="flex items-center space-x-2">
+                  <Image
+                    src="/images/The_Influencer.jpg"
+                    alt="The Influencer Logo"
+                    width={50}
+                    height={50}
+                    style={{ borderRadius: 25 }}
+                  />
+                  <span className="font-bold text-white">The Influencer</span>
+                </Link>
+              </motion.div>
+              <div className="hidden md:flex space-x-6">
+                {["Home", "About", "Features", "Pricing", "Contact"].map(
+                  (item, index) => (
+                    <motion.div
+                      key={item}
+                      variants={navItemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: index * 0.1 }}
                     >
-                      {item}
-                    </Link>
-                  </motion.div>
-                )
-              )}
-            </div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center space-x-4"
-            >
-              <Link href="/login">
-                <Button
-                  variant="ghost"
-                  className="text-white hover:text-white focus:bg-yellow-700 active:bg-yellow-800"
-                >
-                  Login
-                </Button>
-              </Link>
-              <Link href="/signup">
-                <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white">
-                  Sign Up
-                </Button>
-              </Link>
-            </motion.div>
-          </nav>
-        </header>
+                      <Link
+                        href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                        className="text-sm text-gray-400 hover:text-white transition-colors"
+                      >
+                        {item}
+                      </Link>
+                    </motion.div>
+                  )
+                )}
+              </div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center space-x-4"
+              >
+                <Link href="/login">
+                  <Button
+                    variant="ghost"
+                    className="text-white hover:text-white focus:bg-yellow-700 active:bg-yellow-800"
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/signup">
+                  <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white">
+                    Sign Up
+                  </Button>
+                </Link>
+              </motion.div>
+            </nav>
+          </header>
+        )}
+        
         <main className="pt-16">{children}</main>
+
         <footer className="bg-[#0A0B1C]/80 backdrop-blur-sm border-t border-white/5 pt-10">
-<div className="container mx-auto p-4">
-  </div><div className="container mx-auto px-4 py-6">
+          <div className="container mx-auto p-4"></div>
+          <div className="container mx-auto px-4 py-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
                 <h3 className="font-semibold mb-4 text-white">Company</h3>
@@ -213,6 +220,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+
         <FooterModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
@@ -223,3 +231,4 @@ export default function RootLayout({
     </html>
   );
 }
+
