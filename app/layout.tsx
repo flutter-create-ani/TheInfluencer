@@ -8,7 +8,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 // import { CursorEffect } from "@/components/CursorEffect";
 import { FooterModal } from "@/components/FooterModal";
-import { FaTwitter, FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
+import {  FaInstagram, FaLinkedin } from "react-icons/fa";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
