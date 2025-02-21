@@ -252,7 +252,7 @@ export default function Home() {
           <div className="container px-4">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
-                " Testimonials To Our Work "
+                Testimonials To Our Work
               </h2>
               <p className="mx-auto max-w-[600px] text-gray-200">
               Discover what industry experts are saying about the impact and potential of influencer marketing.
