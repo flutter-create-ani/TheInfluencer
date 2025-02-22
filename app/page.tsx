@@ -133,7 +133,7 @@ export default function Home() {
               <Button
                 size="lg"
                 className="bg-[#6366F1] hover:bg-[#5355E8] text-white"
-                onClick={() => setIframeUrl("https://form.typeform.com/to/A9FDMEIi")}
+                onClick={() => setIframeUrl("https://form.jotform.com/250525104244445")}
               >
                 Register for Influencer
               </Button>
@@ -142,7 +142,7 @@ export default function Home() {
                 size="lg"
                 variant="outline"
                 className="border-white/10 text-gray-400 hover:text-white"
-                onClick={() => setIframeUrl("https://form.typeform.com/to/qw4hcwjR")}
+                onClick={() => setIframeUrl("https://form.jotform.com/250515734277459")}
               >
                 Register for Brand
               </Button>

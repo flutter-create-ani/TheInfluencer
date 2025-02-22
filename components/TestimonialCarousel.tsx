@@ -36,17 +36,17 @@ const testimonials = [
   },
 ];
 
-// Variants for a fade transition:
-const fadeVariants = {
-  initial: { opacity: 0, position: "absolute", width: "100%" },
+// Variants for a right-to-left slide transition (only animating opacity and x)
+const slideVariants = {
+  initial: { opacity: 0, x: 100 },
   animate: {
     opacity: 1,
-    position: "relative",
+    x: 0,
     transition: { duration: 0.6, ease: "easeInOut" },
   },
   exit: {
     opacity: 0,
-    position: "absolute",
+    x: -100,
     transition: { duration: 0.6, ease: "easeInOut" },
   },
 };
@@ -65,18 +65,19 @@ export const TestimonialCarousel = () => {
 
   return (
     <div className="w-full max-w-3xl mx-auto bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 rounded-2xl shadow-xl p-4 md:p-8 relative">
-      {/* AnimatePresence for mounting/unmounting slides */}
-      <div className="relative min-h-[12rem]"> 
+      {/* Container with relative positioning */}
+      <div className="relative min-h-[12rem]">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            // variants={fadeVariants}
+            variants={slideVariants}
             initial="initial"
             animate="animate"
             exit="exit"
+            // Set positioning via style instead of variants
+            style={{ position: "absolute", width: "100%" }}
             className="flex flex-col items-center"
           >
-            {/* Slide Content */}
             <div className="bg-white/20 backdrop-blur-md rounded-2xl shadow-lg p-4 md:p-6 max-w-lg w-full mx-auto border border-white/30">
               <p className="text-base md:text-lg font-medium text-white italic leading-relaxed">
                 &ldquo;{testimonials[currentIndex].text}&rdquo;

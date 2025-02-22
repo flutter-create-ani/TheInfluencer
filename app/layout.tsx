@@ -93,7 +93,7 @@ export default function RootLayout({
           {mobileNavOpen && (
             <div className="md:hidden bg-[#0A0B1C] border-t border-white/10">
               <ul className="flex flex-col items-center space-y-4 py-4">
-                {["Home", "About", "Features", "Contact"].map((item) => (
+                {["Home", "About", "Features", "contact"].map((item) => (
                   <li key={item}>
                     <Link
                       href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
