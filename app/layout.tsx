@@ -44,71 +44,81 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen bg-[#0A0B1C] text-white`}>
-        <header className="fixed top-0 w-full z-50 bg-[#0A0B1C]/90 backdrop-blur-md border-b border-white/10">
-          <nav className="container mx-auto flex items-center justify-between h-16 px-6">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Link href="/" className="flex items-center space-x-3">
-                <img
-                  src="/2.png"
-                  alt="Logo"
-                  className="h-10 w-10 object-cover rounded-full"
-                />
-                <span className="text-lg font-bold">The Influencer</span>
-              </Link>
-            </motion.div>
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-6">
-              {["Home", "About", "Features", "Contact"].map((item, index) => (
-                <motion.div
-                  key={item}
-                  variants={navItemVariants}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    className="text-sm text-gray-300 hover:text-white transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-            {/* Mobile Menu Toggle */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setMobileNavOpen(!mobileNavOpen)}
-                className="text-gray-300 hover:text-white transition-colors focus:outline-none"
+        {/* HEADER with Pink Gradient & Rounded Ends */}
+        <header className="fixed top-0 w-full z-50">
+          <div className="mx-2 mt-2 bg-[#0A0B1C]/90 rounded-l-3xl rounded-r-3xl shadow-lg">
+            <nav className="container mx-auto flex items-center justify-between h-16 px-6">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
               >
-                {mobileNavOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-              </button>
-            </div>
-          </nav>
-          {/* Mobile Navigation Menu */}
-          {mobileNavOpen && (
-            <div className="md:hidden bg-[#0A0B1C] border-t border-white/10">
-              <ul className="flex flex-col items-center space-y-4 py-4">
-                {["Home", "About", "Features", "contact"].map((item) => (
-                  <li key={item}>
+                <Link href="/" className="flex items-center space-x-3">
+                  <img
+                    src="/2.png"
+                    alt="Logo"
+                    className="h-10 w-10 object-cover rounded-full"
+                  />
+                  <span className="text-lg font-bold text-white">
+                    The Influencer
+                  </span>
+                </Link>
+              </motion.div>
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex space-x-6">
+                {["Home", "About", "Features", "Contact"].map((item, index) => (
+                  <motion.div
+                    key={item}
+                    variants={navItemVariants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: index * 0.1 }}
+                  >
                     <Link
                       href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      onClick={() => setMobileNavOpen(false)}
-                      className="text-base text-gray-300 hover:text-white transition-colors"
+                      className="text-sm text-white hover:text-gray-300 transition-colors"
                     >
                       {item}
                     </Link>
-                  </li>
+                  </motion.div>
                 ))}
-              </ul>
-            </div>
-          )}
+              </div>
+              {/* Mobile Menu Toggle */}
+              <div className="md:hidden">
+                <button
+                  onClick={() => setMobileNavOpen(!mobileNavOpen)}
+                  className="text-white hover:text-gray-300 transition-colors focus:outline-none"
+                >
+                  {mobileNavOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                </button>
+              </div>
+            </nav>
+
+            {/* Mobile Navigation Menu */}
+            {mobileNavOpen && (
+              <div className="md:hidden bg-gradient-to-r from-pink-300 via-pink-400 to-pink-500 border-t border-pink-400">
+                <ul className="flex flex-col items-center space-y-4 py-4">
+                  {["Home", "About", "Features", "contact"].map((item) => (
+                    <li key={item}>
+                      <Link
+                        href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                        onClick={() => setMobileNavOpen(false)}
+                        className="text-base text-white hover:text-gray-300 transition-colors"
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </header>
+
+        {/* MAIN CONTENT */}
         <main className="pt-20 container mx-auto px-6">{children}</main>
+
+        {/* FOOTER */}
         <footer className="bg-[#0A0B1C] border-t border-white/10 mt-10 py-8 text-center">
           <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
             <div>
@@ -156,44 +166,37 @@ export default function RootLayout({
                           <br />
                           <strong>Support Information:</strong>
                           <br />
-                          At The Influencer, we are committed to providing top-notch support to our users. If you encounter any issues or have inquiries, please reach out through the following channels:
+                          At The Influencer, we are committed to providing
+                          top-notch support to our users. If you encounter any
+                          issues or have inquiries, please reach out:
                           <br />
                           <br />
                           <strong>1. Email Support:</strong>
                           <br />
-                          Reach us at{" "}
                           <a
                             href="mailto:theinfluencer1001@gmail.com"
                             className="text-blue-400"
                           >
                             theinfluencer1001@gmail.com
                           </a>
-                          . We typically respond within 24-48 hours.
-                          <br />
                           <br />
                           <strong>2. Help Center:</strong>
                           <br />
-                          Visit our Help Center for FAQs, troubleshooting guides, and self-help resources.{" "}
                           <a
                             href="mailto:theinfluencer1001@gmail.com"
                             className="text-blue-400"
                           >
                             Click here
                           </a>{" "}
-                          to access.
-                          <br />
+                          for FAQs.
                           <br />
                           <strong>3. Community Forum:</strong>
                           <br />
-                          Join our community forum where users share experiences, ask questions, and get solutions from other members and moderators.
-                          <br />
+                          Share experiences & get solutions from members.
                           <br />
                           <strong>4. Live Chat (Coming Soon):</strong>
                           <br />
-                          We are working on integrating live chat support for instant assistance.
-                          <br />
-                          <br />
-                          Your feedback is valuable to us. If you have suggestions on how we can improve, please let us know.
+                          Instant assistance is on the way!
                           <br />
                           <br />
                           Best Regards,
@@ -223,10 +226,11 @@ export default function RootLayout({
                           <br />
                           <strong>Privacy Policy:</strong>
                           <br />
-                          We respect your privacy and are committed to protecting your personal data. We collect minimal personal information necessary to provide our services and improve user experience. We do not sell, rent, or distribute your data to third parties. Users have full control over their data and can request modifications or deletions.
+                          We respect your privacy and only collect minimal data
+                          to provide our services. We do not sell or distribute
+                          your data without your consent.
                           <br />
-                          <br />
-                          Contact us at: theinfluencer1001@gmail.com.
+                          Contact us at: theinfluencer1001@gmail.com
                         </p>
                       )
                     }
@@ -246,13 +250,13 @@ export default function RootLayout({
                           <br />
                           <strong>Terms of Service:</strong>
                           <br />
-                          By using The Influencer, you agree to comply with our policies. Users must respect intellectual property rights, refrain from prohibited activities, and ensure their content abides by applicable laws. We reserve the right to suspend or terminate accounts that violate these terms.
+                          By using The Influencer, you agree to comply with our
+                          policies and refrain from prohibited activities. We
+                          reserve the right to suspend accounts that violate
+                          these terms.
                           <br />
                           <br />
-                          Users are responsible for maintaining the security of their accounts. We are not liable for damages resulting from misuse or unauthorized access.
-                          <br />
-                          <br />
-                          For any inquiries, contact us at: theinfluencer1001@gmail.com.
+                          For inquiries, email: theinfluencer1001@gmail.com
                         </p>
                       )
                     }
@@ -293,13 +297,13 @@ export default function RootLayout({
             &copy; {currentYear} The Influencer. All rights reserved.
           </div>
         </footer>
+
+        {/* Footer Modal */}
         <FooterModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
           title={modalContent.title}
-          content={
-            modalContent.content || <p>No content available.</p>
-          }
+          content={modalContent.content || <p>No content available.</p>}
         />
       </body>
     </html>

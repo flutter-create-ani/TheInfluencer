@@ -410,6 +410,152 @@ export default function Home() {
   </section>
 </ScrollAnimatedSection>
 
+{/* Blog Section */}
+<ScrollAnimatedSection>
+  <section className="py-20">
+    <div className="container mx-auto px-6">
+      <div className="text-center space-y-4 mb-12">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
+          Latest Articles & News
+        </h2>
+        <p className="mx-auto max-w-[600px] text-gray-400">
+          Stay up-to-date with the latest insights, trends, and tips in influencer marketing.
+        </p>
+      </div>
+
+      {/* Blog Cards */}
+      <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+        {/* Example Blog Post #1 */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
+        >
+          {/* Image */}
+          <img
+            src="/images/blog1.jpg"
+            alt="Blog 1"
+            className="w-full h-48 object-cover rounded-md mb-4"
+          />
+
+          {/* Meta Info */}
+          <div className="flex items-center text-sm text-gray-400 mb-2">
+            <span className="mr-2">
+              <span className="text-red-500 font-semibold">10</span> JUNE
+            </span>
+            <span className="mx-2">|</span>
+            <span>By Admin</span>
+            <span className="mx-2">|</span>
+            <span>Music</span>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-lg font-semibold text-white mb-4">
+            Many of those Products Offer the Potential
+          </h3>
+
+          {/* Read More Link */}
+          <a
+            href="#"
+            className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
+          >
+            Read More
+            <svg
+              className="ml-2 w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
+            </svg>
+          </a>
+        </motion.div>
+
+        {/* Example Blog Post #2 */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
+        >
+          <img
+            src="/images/blog2.jpg"
+            alt="Blog 2"
+            className="w-full h-48 object-cover rounded-md mb-4"
+          />
+          <div className="flex items-center text-sm text-gray-400 mb-2">
+            <span className="mr-2">
+              <span className="text-red-500 font-semibold">10</span> JUNE
+            </span>
+            <span className="mx-2">|</span>
+            <span>By Admin</span>
+            <span className="mx-2">|</span>
+            <span>Music</span>
+          </div>
+          <h3 className="text-lg font-semibold text-white mb-4">
+            Many of those Products Offer the Potential
+          </h3>
+          <a
+            href="#"
+            className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
+          >
+            Read More
+            <svg
+              className="ml-2 w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
+            </svg>
+          </a>
+        </motion.div>
+
+        {/* Example Blog Post #3 */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
+        >
+          <img
+            src="/images/blog3.jpg"
+            alt="Blog 3"
+            className="w-full h-48 object-cover rounded-md mb-4"
+          />
+          <div className="flex items-center text-sm text-gray-400 mb-2">
+            <span className="mr-2">
+              <span className="text-red-500 font-semibold">10</span> JUNE
+            </span>
+            <span className="mx-2">|</span>
+            <span>By Admin</span>
+            <span className="mx-2">|</span>
+            <span>Music</span>
+          </div>
+          <h3 className="text-lg font-semibold text-white mb-4">
+            Many of those Products Offer the Potential
+          </h3>
+          <a
+            href="#"
+            className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
+          >
+            Read More
+            <svg
+              className="ml-2 w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
+            </svg>
+          </a>
+        </motion.div>
+      </div>
+    </div>
+  </section>
+</ScrollAnimatedSection>
+
     </div>
   );
 }
