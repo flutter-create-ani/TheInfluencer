@@ -348,6 +348,68 @@ export default function Home() {
           </div>
         </section>
       </ScrollAnimatedSection>
+      {/* Image Section */}
+<ScrollAnimatedSection>
+  <section className="py-20 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl max-w-7xl mx-auto">
+    <div className="container mx-auto px-6">
+      <div className="text-center space-y-4 mb-16">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
+          Our Image Showcase
+        </h2>
+        <p className="mx-auto max-w-[600px] text-gray-200">
+          A glimpse into our community and successes.
+        </p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Example images — replace src paths with your own */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+          className="overflow-hidden rounded-xl shadow-lg"
+        >
+          <img
+            src="/images/example1.jpg"
+            alt="Showcase 1"
+            className="w-full h-auto object-cover"
+          />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="overflow-hidden rounded-xl shadow-lg"
+        >
+          <img
+            src="/images/example2.jpg"
+            alt="Showcase 2"
+            className="w-full h-auto object-cover"
+          />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="overflow-hidden rounded-xl shadow-lg"
+        >
+          <img
+            src="/images/example3.jpg"
+            alt="Showcase 3"
+            className="w-full h-auto object-cover"
+          />
+        </motion.div>
+        
+        {/* Add more images if desired */}
+      </div>
+    </div>
+  </section>
+</ScrollAnimatedSection>
+
     </div>
   );
 }
