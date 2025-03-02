@@ -43,7 +43,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen bg-[#0A0B1C] text-white`}>
+      <body
+        className={`${inter.className} min-h-screen bg-[#0A0B1C] text-white`}
+      >
         {/* HEADER with Pink Gradient & Rounded Ends */}
         <header className="fixed top-0 w-full z-50">
           <div className="mx-2 mt-2 bg-[#0A0B1C]/90 rounded-l-3xl rounded-r-3xl shadow-lg">
@@ -65,7 +67,7 @@ export default function RootLayout({
                 </Link>
               </motion.div>
               {/* Desktop Navigation */}
-              <div className="hidden md:flex space-x-6">
+              <div className="hidden md:flex space-x-16">
                 {["Home", "About", "Features", "Contact"].map((item, index) => (
                   <motion.div
                     key={item}
@@ -147,9 +149,7 @@ export default function RootLayout({
               <ul className="space-y-2">
                 <li>
                   <button
-                    onClick={() =>
-                      openModal("Blog", <p>Coming Soon......</p>)
-                    }
+                    onClick={() => openModal("Blog", <p>Coming Soon......</p>)}
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     Blog

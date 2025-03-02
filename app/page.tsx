@@ -2,18 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Filter, Globe, Star, Users, BarChart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { useInView } from "react-intersection-observer";
 import TypingAnimation from "@/components/TypingAnimation";
-
+import { ImageShowcaseCarousel } from "@/components/ImageShowcaseCarousel";
 const MotionCard = motion(Card);
 
 interface ScrollAnimatedSectionProps {
@@ -133,7 +128,9 @@ export default function Home() {
               <Button
                 size="lg"
                 className="bg-[#6366F1] hover:bg-[#5355E8] text-white"
-                onClick={() => setIframeUrl("https://form.jotform.com/250525104244445")}
+                onClick={() =>
+                  setIframeUrl("https://form.jotform.com/250525104244445")
+                }
               >
                 Register for Influencer
               </Button>
@@ -142,7 +139,9 @@ export default function Home() {
                 size="lg"
                 variant="outline"
                 className="border-white/10 text-gray-400 hover:text-white"
-                onClick={() => setIframeUrl("https://form.jotform.com/250515734277459")}
+                onClick={() =>
+                  setIframeUrl("https://form.jotform.com/250515734277459")
+                }
               >
                 Register for Brand
               </Button>
@@ -259,7 +258,8 @@ export default function Home() {
                 Testimonials To Our Work
               </h2>
               <p className="mx-auto max-w-[600px] text-gray-200">
-                Discover what industry experts are saying about the impact and potential of influencer marketing.
+                Discover what industry experts are saying about the impact and
+                potential of influencer marketing.
               </p>
             </div>
             <TestimonialCarousel />
@@ -276,7 +276,8 @@ export default function Home() {
                 Powerful Features
               </h2>
               <p className="mx-auto max-w-[600px] text-gray-400">
-                Everything you need to find and connect with the right influencers.
+                Everything you need to find and connect with the right
+                influencers.
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -349,213 +350,172 @@ export default function Home() {
         </section>
       </ScrollAnimatedSection>
       {/* Image Section */}
-<ScrollAnimatedSection>
-  <section className="py-20 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl max-w-7xl mx-auto">
-    <div className="container mx-auto px-6">
-      <div className="text-center space-y-4 mb-16">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
-          Our Image Showcase
-        </h2>
-        <p className="mx-auto max-w-[600px] text-gray-200">
-          A glimpse into our community and successes.
-        </p>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Example images — replace src paths with your own */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
-          className="overflow-hidden rounded-xl shadow-lg"
-        >
-          <img
-            src="/images/example1.jpg"
-            alt="Showcase 1"
-            className="w-full h-auto object-cover"
-          />
-        </motion.div>
+      <ScrollAnimatedSection>
+        <section className="py-20 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl w-full">
+          <div className="container mx-auto px-6">
+            <div className="text-center space-y-4 mb-16">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
+                Our Image Showcase
+              </h2>
+              <p className="mx-auto max-w-[600px] text-gray-200">
+                A glimpse into our community and successes.
+              </p>
+            </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="overflow-hidden rounded-xl shadow-lg"
-        >
-          <img
-            src="/images/example2.jpg"
-            alt="Showcase 2"
-            className="w-full h-auto object-cover"
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="overflow-hidden rounded-xl shadow-lg"
-        >
-          <img
-            src="/images/example3.jpg"
-            alt="Showcase 3"
-            className="w-full h-auto object-cover"
-          />
-        </motion.div>
-        
-        {/* Add more images if desired */}
-      </div>
-    </div>
-  </section>
-</ScrollAnimatedSection>
-
-{/* Blog Section */}
-<ScrollAnimatedSection>
-  <section className="py-20">
-    <div className="container mx-auto px-6">
-      <div className="text-center space-y-4 mb-12">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
-          Latest Articles & News
-        </h2>
-        <p className="mx-auto max-w-[600px] text-gray-400">
-          Stay up-to-date with the latest insights, trends, and tips in influencer marketing.
-        </p>
-      </div>
-
-      {/* Blog Cards */}
-      <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-        {/* Example Blog Post #1 */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
-        >
-          {/* Image */}
-          <img
-            src="/images/blog1.jpg"
-            alt="Blog 1"
-            className="w-full h-48 object-cover rounded-md mb-4"
-          />
-
-          {/* Meta Info */}
-          <div className="flex items-center text-sm text-gray-400 mb-2">
-            <span className="mr-2">
-              <span className="text-red-500 font-semibold">10</span> JUNE
-            </span>
-            <span className="mx-2">|</span>
-            <span>By Admin</span>
-            <span className="mx-2">|</span>
-            <span>Music</span>
+            {/* Use the ImageShowcaseCarousel component here */}
+            <div className="w-full overflow-hidden">
+              <ImageShowcaseCarousel />
+            </div>
           </div>
+        </section>
+      </ScrollAnimatedSection>
 
-          {/* Title */}
-          <h3 className="text-lg font-semibold text-white mb-4">
-            Many of those Products Offer the Potential
-          </h3>
+      {/* Blog Section */}
+      <ScrollAnimatedSection>
+        <section className="py-20">
+          <div className="container mx-auto px-6">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
+                Latest Articles & News
+              </h2>
+              <p className="mx-auto max-w-[600px] text-gray-400">
+                Stay up-to-date with the latest insights, trends, and tips in
+                influencer marketing.
+              </p>
+            </div>
 
-          {/* Read More Link */}
-          <a
-            href="#"
-            className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
-          >
-            Read More
-            <svg
-              className="ml-2 w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
-            </svg>
-          </a>
-        </motion.div>
+            {/* Blog Cards */}
+            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+              {/* Example Blog Post #1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
+              >
+                {/* Image */}
+                <img
+                  src="/images/blog1.jpg"
+                  alt="Blog 1"
+                  className="w-full h-48 object-cover rounded-md mb-4"
+                />
 
-        {/* Example Blog Post #2 */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
-        >
-          <img
-            src="/images/blog2.jpg"
-            alt="Blog 2"
-            className="w-full h-48 object-cover rounded-md mb-4"
-          />
-          <div className="flex items-center text-sm text-gray-400 mb-2">
-            <span className="mr-2">
-              <span className="text-red-500 font-semibold">10</span> JUNE
-            </span>
-            <span className="mx-2">|</span>
-            <span>By Admin</span>
-            <span className="mx-2">|</span>
-            <span>Music</span>
+                {/* Meta Info */}
+                <div className="flex items-center text-sm text-gray-400 mb-2">
+                  <span className="mr-2">
+                    <span className="text-red-500 font-semibold">10</span> JUNE
+                  </span>
+                  <span className="mx-2">|</span>
+                  <span>By Admin</span>
+                  <span className="mx-2">|</span>
+                  <span>Music</span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg font-semibold text-white mb-4">
+                  Many of those Products Offer the Potential
+                </h3>
+
+                {/* Read More Link */}
+                <a
+                  href="#"
+                  className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
+                >
+                  Read More
+                  <svg
+                    className="ml-2 w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
+                  </svg>
+                </a>
+              </motion.div>
+
+              {/* Example Blog Post #2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
+              >
+                <img
+                  src="/images/blog2.jpg"
+                  alt="Blog 2"
+                  className="w-full h-48 object-cover rounded-md mb-4"
+                />
+                <div className="flex items-center text-sm text-gray-400 mb-2">
+                  <span className="mr-2">
+                    <span className="text-red-500 font-semibold">10</span> JUNE
+                  </span>
+                  <span className="mx-2">|</span>
+                  <span>By Admin</span>
+                  <span className="mx-2">|</span>
+                  <span>Music</span>
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-4">
+                  Many of those Products Offer the Potential
+                </h3>
+                <a
+                  href="#"
+                  className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
+                >
+                  Read More
+                  <svg
+                    className="ml-2 w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
+                  </svg>
+                </a>
+              </motion.div>
+
+              {/* Example Blog Post #3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
+              >
+                <img
+                  src="/images/blog3.jpg"
+                  alt="Blog 3"
+                  className="w-full h-48 object-cover rounded-md mb-4"
+                />
+                <div className="flex items-center text-sm text-gray-400 mb-2">
+                  <span className="mr-2">
+                    <span className="text-red-500 font-semibold">10</span> JUNE
+                  </span>
+                  <span className="mx-2">|</span>
+                  <span>By Admin</span>
+                  <span className="mx-2">|</span>
+                  <span>Music</span>
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-4">
+                  Many of those Products Offer the Potential
+                </h3>
+                <a
+                  href="#"
+                  className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
+                >
+                  Read More
+                  <svg
+                    className="ml-2 w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
+                  </svg>
+                </a>
+              </motion.div>
+            </div>
           </div>
-          <h3 className="text-lg font-semibold text-white mb-4">
-            Many of those Products Offer the Potential
-          </h3>
-          <a
-            href="#"
-            className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
-          >
-            Read More
-            <svg
-              className="ml-2 w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
-            </svg>
-          </a>
-        </motion.div>
-
-        {/* Example Blog Post #3 */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
-        >
-          <img
-            src="/images/blog3.jpg"
-            alt="Blog 3"
-            className="w-full h-48 object-cover rounded-md mb-4"
-          />
-          <div className="flex items-center text-sm text-gray-400 mb-2">
-            <span className="mr-2">
-              <span className="text-red-500 font-semibold">10</span> JUNE
-            </span>
-            <span className="mx-2">|</span>
-            <span>By Admin</span>
-            <span className="mx-2">|</span>
-            <span>Music</span>
-          </div>
-          <h3 className="text-lg font-semibold text-white mb-4">
-            Many of those Products Offer the Potential
-          </h3>
-          <a
-            href="#"
-            className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
-          >
-            Read More
-            <svg
-              className="ml-2 w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
-            </svg>
-          </a>
-        </motion.div>
-      </div>
-    </div>
-  </section>
-</ScrollAnimatedSection>
-
+        </section>
+      </ScrollAnimatedSection>
     </div>
   );
 }
