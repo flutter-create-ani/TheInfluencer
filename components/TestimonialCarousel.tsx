@@ -36,7 +36,7 @@ const testimonials = [
   },
 ];
 
-// Variants for a right-to-left slide transition (only animating opacity and x)
+// Variants for a right-to-left slide transition
 const slideVariants = {
   initial: { opacity: 0, x: 100 },
   animate: {
@@ -54,19 +54,16 @@ const slideVariants = {
 export const TestimonialCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Automatically advance testimonials every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
     }, 5000);
-
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="w-full max-w-3xl mx-auto bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 rounded-2xl shadow-xl p-4 md:p-8 relative">
-      {/* Container with relative positioning */}
-      <div className="relative min-h-[12rem]">
+    <div className="w-full max-w-3xl mx-auto bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 rounded-2xl shadow-xl p-6 md:p-10 relative">
+      <div className="relative min-h-[14rem]">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -74,16 +71,15 @@ export const TestimonialCarousel = () => {
             initial="initial"
             animate="animate"
             exit="exit"
-            // Set positioning via style instead of variants
             style={{ position: "absolute", width: "100%" }}
             className="flex flex-col items-center"
           >
-            <div className="bg-white/20 backdrop-blur-md rounded-2xl shadow-lg p-4 md:p-6 max-w-lg w-full mx-auto border border-white/30">
-              <p className="text-base md:text-lg font-medium text-white italic leading-relaxed">
+            <div className="bg-white/20 backdrop-blur-md rounded-2xl shadow-lg p-5 md:p-7 max-w-lg w-full mx-auto border border-white/30">
+              <p className="text-base md:text-lg font-medium text-white italic leading-relaxed text-center">
                 &ldquo;{testimonials[currentIndex].text}&rdquo;
               </p>
-              <div className="mt-6 text-center">
-                <p className="text-base md:text-lg font-semibold text-white">
+              <div className="mt-6 text-center space-y-1">
+                <p className="text-lg md:text-xl font-semibold text-white">
                   {testimonials[currentIndex].name}
                 </p>
                 <p className="text-sm md:text-base text-gray-300">
@@ -95,8 +91,7 @@ export const TestimonialCarousel = () => {
         </AnimatePresence>
       </div>
 
-      {/* Navigation Dots */}
-      <div className="flex justify-center space-x-2 mt-4">
+      <div className="flex justify-center space-x-2 mt-5">
         {testimonials.map((_, index) => (
           <div
             key={index}

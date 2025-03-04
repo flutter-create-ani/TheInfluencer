@@ -1,7 +1,8 @@
-// components/ImageShowcaseCarousel.tsx
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface Image {
   id: number;
@@ -10,25 +11,65 @@ interface Image {
 }
 
 const images: Image[] = [
-  { id: 1, src: "/images/stock1.jpg", alt: "Smiley woman pop party" },
-  { id: 2, src: "/images/stock2.jpg", alt: "Woman in sequin jacket" },
-  { id: 3, src: "/images/stock3.jpg", alt: "Woman in red jacket" },
-  { id: 4, src: "/images/stock4.jpg", alt: "Woman in yellow dress" },
-  { id: 5, src: "/images/stock5.jpg", alt: "Woman in pink shirt" },
-  { id: 6, src: "/images/stock6.jpg", alt: "Woman with balloon" },
-  { id: 7, src: "/images/stock7.jpg", alt: "Woman in purple shirt" },
-  { id: 8, src: "/images/stock8.jpg", alt: "Woman in pink shirt 2" },
-  { id: 9, src: "/images/stock9.jpg", alt: "Woman in red jacket 2" },
-  { id: 10, src: "/images/stock10.jpg", alt: "Woman in purple shirt 2" },
+  {
+    id: 1,
+    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Smiley woman pop party",
+  },
+  {
+    id: 2,
+    src: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Woman in sequin jacket",
+  },
+  {
+    id: 3,
+    src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Woman in red jacket",
+  },
+  {
+    id: 4,
+    src: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Woman in yellow dress",
+  },
+  {
+    id: 5,
+    src: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Woman in pink shirt",
+  },
+  {
+    id: 6,
+    src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Woman with balloon",
+  },
+  {
+    id: 7,
+    src: "https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Woman in purple shirt",
+  },
+  {
+    id: 8,
+    src: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Woman in pink shirt 2",
+  },
+  {
+    id: 9,
+    src: "https://images.unsplash.com/photo-1484863137850-59afcfe05386?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Woman in red jacket 2",
+  },
+  {
+    id: 10,
+    src: "https://images.unsplash.com/photo-1484399172022-72a90b12e3c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    alt: "Woman in purple shirt 2",
+  },
 ];
 
-const animationSpeed = 1; // Adjust for speed (higher = faster)
-const imageHeight = 300; // Adjusted image height
-const gap = 32; // Increased gap between images
-const imageWidthPercentage = 0.4; // Set the image width as 40% of the container
+const animationSpeed = 3;
+const gap = 32; // Gap between images
 
-// Hook for left scrolling
-const useLeftScroll = () => {
+const useInfiniteScroll = (
+  imagesArray: Image[],
+  direction: "left" | "right"
+) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,171 +78,97 @@ const useLeftScroll = () => {
     if (!containerRef.current || isPaused) return;
 
     const containerWidth = containerRef.current.offsetWidth;
-    const imageWidth = containerWidth * imageWidthPercentage;
-    const contentWidth = images.length * (imageWidth + gap);
+    const imageWidth = containerWidth * 0.4; // Default width percentage for desktop
+    const singleSetWidth = imagesArray.length * (imageWidth + gap);
 
     const scroll = () => {
       setScrollPosition((prev) => {
-        let newPosition = prev - animationSpeed;
-
-        // Reset scroll position when it reaches the end of the duplicated content
-        if (newPosition <= -contentWidth) {
-          newPosition = 0; // Reset to the beginning
+        const newPosition =
+          prev + (direction === "left" ? -animationSpeed : animationSpeed);
+        // Reset when we've moved past one complete set
+        if (Math.abs(newPosition) >= singleSetWidth) {
+          return (
+            newPosition +
+            (direction === "left" ? singleSetWidth : -singleSetWidth)
+          );
         }
-
         return newPosition;
       });
     };
 
-    const intervalId = setInterval(scroll, 16); // ~60 FPS for smoothness
-
+    const intervalId = setInterval(scroll, 16);
     return () => clearInterval(intervalId);
-  }, [isPaused]);
+  }, [isPaused, imagesArray, direction]);
 
-  const handleMouseEnter = () => {
-    setIsPaused(true);
+  return {
+    scrollPosition,
+    containerRef,
+    handleMouseEnter: () => setIsPaused(true),
+    handleMouseLeave: () => setIsPaused(false),
   };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-  };
-
-  return { scrollPosition, containerRef, handleMouseEnter, handleMouseLeave };
-};
-
-// Hook for right scrolling
-const useRightScroll = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!containerRef.current || isPaused) return;
-
-    const containerWidth = containerRef.current.offsetWidth;
-    const imageWidth = containerWidth * imageWidthPercentage;
-    const contentWidth = images.length * (imageWidth + gap);
-
-    const scroll = () => {
-      setScrollPosition((prev) => {
-        let newPosition = prev + animationSpeed;
-
-        // Reset scroll position when it reaches the end of the duplicated content
-        if (newPosition >= contentWidth) {
-          newPosition = 0; // Reset to the beginning
-        }
-
-        return newPosition;
-      });
-    };
-
-    const intervalId = setInterval(scroll, 16); // ~60 FPS for smoothness
-
-    return () => clearInterval(intervalId);
-  }, [isPaused]);
-
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-  };
-
-  return { scrollPosition, containerRef, handleMouseEnter, handleMouseLeave };
 };
 
 export const ImageShowcaseCarousel = () => {
-  const {
-    scrollPosition: scrollLeft,
-    containerRef: containerRefLeft,
-    handleMouseEnter: handleMouseEnterLeft,
-    handleMouseLeave: handleMouseLeaveLeft,
-  } = useLeftScroll();
+  const { scrollPosition, containerRef, handleMouseEnter, handleMouseLeave } =
+    useInfiniteScroll(images, "left");
 
-  const {
-    scrollPosition: scrollRight,
-    containerRef: containerRefRight,
-    handleMouseEnter: handleMouseEnterRight,
-    handleMouseLeave: handleMouseLeaveRight,
-  } = useRightScroll();
-
-  // Duplicate the images array for infinite scrolling
+  // Duplicate images for seamless looping
   const duplicatedImages = [...images, ...images];
 
   return (
-    <div className="w-full">
-      {/* Row Scrolling Left */}
-      <div
-        className="overflow-hidden relative mb-12"
-        onMouseEnter={handleMouseEnterLeft}
-        onMouseLeave={handleMouseLeaveLeft}
-      >
+    <section className="py-12 sm:py-20 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center space-y-4 mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter sm:text-5xl text-white">
+            Image Showcase
+          </h2>
+          <p className="mx-auto max-w-[600px] text-gray-400 text-sm sm:text-base">
+            Explore our stunning collection of images.
+          </p>
+        </div>
+        {/* Infinite Scrolling Images */}
         <div
-          ref={containerRefLeft}
-          style={{
-            transform: `translateX(${scrollLeft}px)`, // Scroll to the left
-            transition: "transform 0.02s linear",
-            whiteSpace: "nowrap",
-            display: "flex",
-          }}
+          className="relative w-full overflow-hidden"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          {duplicatedImages.map((image, index) => (
-            <div
-              key={`${image.id}-${index}`}
-              style={{
-                width: `${imageWidthPercentage * 100}%`,
-                height: imageHeight,
-                marginRight: gap,
-                flexShrink: 0,
-              }}
-              className="rounded-lg overflow-hidden shadow-2xl"
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
+          <div
+            ref={containerRef}
+            style={{
+              transform: `translateX(${scrollPosition}px)`,
+              transition: "transform 0.02s linear",
+              whiteSpace: "nowrap",
+              display: "flex",
+            }}
+          >
+            {duplicatedImages.map((image, index) => (
+              <motion.div
+                key={`${image.id}-${index}`}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 0.95 }} // Zoom-out effect
+                transition={{ duration: 0.2, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="rounded-lg overflow-hidden shadow-2xl"
+                style={{
+                  width: "clamp(200px, 25vw, 450px)", // Responsive width for desktop
+                  height: "clamp(150px, 20vw, 310px)", // Responsive height for desktop
+                  marginRight: gap,
+                  flexShrink: 0,
+                }}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={500} // Set appropriate width
+                  height={500} // Set appropriate height
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
-
-      {/* Row Scrolling Right */}
-      <div
-        className="overflow-hidden relative"
-        onMouseEnter={handleMouseEnterRight}
-        onMouseLeave={handleMouseLeaveRight}
-      >
-        <div
-          ref={containerRefRight}
-          style={{
-            transform: `translateX(${-scrollRight}px)`, // Scroll to the right (fixed)
-            transition: "transform 0.02s linear",
-            whiteSpace: "nowrap",
-            display: "flex",
-          }}
-        >
-          {duplicatedImages.map((image, index) => (
-            <div
-              key={`${image.id}-${index}`}
-              style={{
-                width: `${imageWidthPercentage * 100}%`,
-                height: imageHeight,
-                marginRight: gap,
-                flexShrink: 0,
-              }}
-              className="rounded-lg overflow-hidden shadow-2xl"
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };

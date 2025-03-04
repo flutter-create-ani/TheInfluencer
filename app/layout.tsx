@@ -7,7 +7,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FooterModal } from "@/components/FooterModal";
 import { FaInstagram, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
-
+import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -56,9 +56,11 @@ export default function RootLayout({
                 transition={{ duration: 0.5 }}
               >
                 <Link href="/" className="flex items-center space-x-3">
-                  <img
+                  <Image
                     src="/2.png"
                     alt="Logo"
+                    width={40} // Specify width
+                    height={40} // Specify height
                     className="h-10 w-10 object-cover rounded-full"
                   />
                   <span className="text-lg font-bold text-white">
