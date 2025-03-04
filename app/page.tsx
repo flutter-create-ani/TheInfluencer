@@ -252,7 +252,7 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <ScrollAnimatedSection>
-        <section className="py-20 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl max-w-7xl mx-auto">
+        <section className="py-28 px-10 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl max-w-7xl mx-auto">
           <div className="container mx-auto px-6">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
@@ -270,7 +270,7 @@ export default function Home() {
 
       {/* Image Section */}
       <ScrollAnimatedSection>
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="container my-0 mx-auto rounded-xl px-4 sm:px-6">
           {" "}
           {/* Adjusted padding for mobile */}
           <div className="w-full overflow-hidden">

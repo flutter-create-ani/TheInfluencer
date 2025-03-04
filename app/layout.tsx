@@ -100,9 +100,9 @@ export default function RootLayout({
 
             {/* Mobile Navigation Menu */}
             {mobileNavOpen && (
-              <div className="md:hidden bg-gradient-to-r from-pink-300 via-pink-400 to-pink-500 border-t border-pink-400">
+              <div className="md:hidden ">
                 <ul className="flex flex-col items-center space-y-4 py-4">
-                  {["Home", "About", "Features", "contact"].map((item) => (
+                  {["Home", "About", "Features", "Contact"].map((item) => (
                     <li key={item}>
                       <Link
                         href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
