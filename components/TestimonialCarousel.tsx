@@ -1,5 +1,4 @@
 "use client";
-"use client";
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -37,7 +36,7 @@ const testimonials = [
   },
 ];
 
-// Variants for a right-to-left slide transition
+// Variants for a right-to-left slide transition (only animating opacity and x)
 const slideVariants = {
   initial: { opacity: 0, x: 100 },
   animate: {
@@ -55,16 +54,19 @@ const slideVariants = {
 export const TestimonialCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Automatically advance testimonials every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
     }, 5000);
+
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="w-full max-w-3xl mx-auto ">
-      <div className="relative min-h-[10rem] md:min-h-[14rem]">
+    <div className="w-full max-w-3xl mx-auto bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 rounded-2xl shadow-xl p-4 md:p-8 relative">
+      {/* Container with relative positioning */}
+      <div className="relative min-h-[12rem]">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -72,18 +74,19 @@ export const TestimonialCarousel = () => {
             initial="initial"
             animate="animate"
             exit="exit"
+            // Set positioning via style instead of variants
             style={{ position: "absolute", width: "100%" }}
             className="flex flex-col items-center"
           >
-            <div className="bg-white/20 backdrop-blur-md rounded-2xl shadow-lg p-4 md:p-7 w-full mx-2 md:mx-auto border border-white/30">
-              <p className="text-xs md:text-lg font-medium text-white italic leading-relaxed text-center break-words">
+            <div className="bg-white/20 backdrop-blur-md rounded-2xl shadow-lg p-4 md:p-6 max-w-lg w-full mx-auto border border-white/30">
+              <p className="text-base md:text-lg font-medium text-white italic leading-relaxed">
                 &ldquo;{testimonials[currentIndex].text}&rdquo;
               </p>
-              <div className="mt-3 md:mt-6 text-center space-y-1">
-                <p className="text-sm md:text-xl font-semibold text-white">
+              <div className="mt-6 text-center">
+                <p className="text-base md:text-lg font-semibold text-white">
                   {testimonials[currentIndex].name}
                 </p>
-                <p className="text-xs md:text-base text-gray-300 break-words">
+                <p className="text-sm md:text-base text-gray-300">
                   {testimonials[currentIndex].title}
                 </p>
               </div>
@@ -92,12 +95,13 @@ export const TestimonialCarousel = () => {
         </AnimatePresence>
       </div>
 
-      <div className="flex justify-center space-x-2 mt-12">
+      {/* Navigation Dots */}
+      <div className="flex justify-center space-x-2 mt-4">
         {testimonials.map((_, index) => (
           <div
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 md:w-3 md:h-3 rounded-full cursor-pointer transition-all duration-300 ${
+            className={`w-3 h-3 md:w-4 md:h-4 rounded-full cursor-pointer transition-all duration-300 ${
               index === currentIndex
                 ? "bg-white scale-125"
                 : "bg-white/50 hover:bg-white/70"
@@ -108,43 +112,3 @@ export const TestimonialCarousel = () => {
     </div>
   );
 };
-
-interface ScrollAnimatedSectionProps {
-  children: React.ReactNode;
-}
-
-export const ScrollAnimatedSection = ({
-  children,
-}: ScrollAnimatedSectionProps) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-export default function TestimonialsSection() {
-  return (
-    <ScrollAnimatedSection>
-      <section className="py-8 md:py-20 px-4 md:px-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl max-w-7xl mx-auto">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center space-y-4 mb-6 md:mb-16">
-            <h2 className="text-xl md:text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white">
-              Testimonials To Our Work
-            </h2>
-            <p className="mx-auto max-w-[600px] text-xs md:text-base text-gray-200">
-              Discover what industry experts are saying about the impact and
-              potential of influencer marketing.
-            </p>
-          </div>
-          <TestimonialCarousel />
-        </div>
-      </section>
-    </ScrollAnimatedSection>
-  );
-}

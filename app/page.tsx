@@ -2,14 +2,27 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Search, Filter, Globe, Star, Users, BarChart } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Search,
+  Filter,
+  Globe,
+  Star,
+  Users,
+  BarChart,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { useInView } from "react-intersection-observer";
 import TypingAnimation from "@/components/TypingAnimation";
 import { ImageShowcaseCarousel } from "@/components/ImageShowcaseCarousel";
 import Image from "next/image";
+
 const MotionCard = motion(Card);
 
 interface ScrollAnimatedSectionProps {
@@ -102,7 +115,6 @@ export default function Home() {
               </span>
               <br className="hidden sm:block" /> for Your Brand
             </h1>
-
             <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
               The #1 platform for influencers & brands to connect and grow 🚀
             </p>
@@ -135,7 +147,6 @@ export default function Home() {
               >
                 Register for Influencer
               </Button>
-
               <Button
                 size="lg"
                 variant="outline"
@@ -171,7 +182,6 @@ export default function Home() {
                     >
                       ✖
                     </button>
-
                     {/* iFrame */}
                     <iframe
                       src={iframeUrl}
@@ -270,13 +280,14 @@ export default function Home() {
 
       {/* Image Section */}
       <ScrollAnimatedSection>
-        <div className="container my-0 mx-auto rounded-xl px-4 sm:px-6">
-          {" "}
-          {/* Adjusted padding for mobile */}
-          <div className="w-full overflow-hidden">
-            <ImageShowcaseCarousel />
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            
+            <div className="rounded-3xl shadow-xl overflow-hidden">
+              <ImageShowcaseCarousel />
+            </div>
           </div>
-        </div>
+        </section>
       </ScrollAnimatedSection>
 
       {/* Features Section */}
@@ -288,8 +299,7 @@ export default function Home() {
                 Powerful Features
               </h2>
               <p className="mx-auto max-w-[600px] text-gray-400">
-                Everything you need to find and connect with the right
-                influencers.
+                Everything you need to find and connect with the right influencers.
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -344,7 +354,10 @@ export default function Home() {
                     <motion.div
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
+                      transition={{
+                        delay: index * 0.1 + 0.2,
+                        duration: 0.5,
+                      }}
                     >
                       <feature.icon className="w-10 h-10 text-[#6366F1] mb-4" />
                     </motion.div>
@@ -375,7 +388,6 @@ export default function Home() {
                 influencer marketing.
               </p>
             </div>
-
             {/* Scrolling Blog Cards */}
             <div className="relative w-full overflow-hidden">
               <div className="flex w-max animate-scroll-infinite hover:paused">
@@ -384,7 +396,7 @@ export default function Home() {
                     {
                       id: 1,
                       image:
-                        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80", // AI in Marketing
+                        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
                       date: "15 MAY",
                       author: "By Jane Doe",
                       category: "Technology",
@@ -394,7 +406,7 @@ export default function Home() {
                     {
                       id: 2,
                       image:
-                        "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80", // Work-Life Balance
+                        "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
                       date: "22 MAY",
                       author: "By John Smith",
                       category: "Lifestyle",
@@ -404,7 +416,7 @@ export default function Home() {
                     {
                       id: 3,
                       image:
-                        "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80", // Hidden Gems in Europe
+                        "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
                       date: "30 MAY",
                       author: "By Alice Johnson",
                       category: "Travel",
@@ -414,7 +426,7 @@ export default function Home() {
                     {
                       id: 4,
                       image:
-                        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80", // Invest Wisely in 2024
+                        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
                       date: "5 JUNE",
                       author: "By Michael Brown",
                       category: "Finance",
@@ -424,13 +436,13 @@ export default function Home() {
                   ].map((card) => (
                     <div
                       key={`${repeatIndex}-${card.id}`}
-                      className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm w-[500px] mx-4 flex-shrink-0 hover:scale-95 transition-transform duration-300" // Zoom-out effect
+                      className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm w-[500px] mx-4 flex-shrink-0 hover:scale-95 transition-transform duration-300"
                     >
                       <Image
                         src={card.image}
                         alt={`Blog ${card.id}`}
-                        width={500} // Adjust width as needed
-                        height={192} // Adjust height as needed
+                        width={500}
+                        height={192}
                         className="w-full h-48 object-cover rounded-md mb-4"
                       />
                       <div className="flex items-center text-sm text-gray-400 mb-2">
@@ -468,25 +480,24 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         <style>
           {`
-      @keyframes scroll-infinite {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-50%);
-        }
-      }
-      .animate-scroll-infinite {
-        display: flex;
-        animation: scroll-infinite 10s linear infinite;
-      }
-      .animate-scroll-infinite:hover {
-        animation-play-state: paused;
-      }
-    `}
+            @keyframes scroll-infinite {
+              from {
+                transform: translateX(0);
+              }
+              to {
+                transform: translateX(-50%);
+              }
+            }
+            .animate-scroll-infinite {
+              display: flex;
+              animation: scroll-infinite 20s linear infinite;
+            }
+            .animate-scroll-infinite:hover {
+              animation-play-state: paused;
+            }
+          `}
         </style>
       </ScrollAnimatedSection>
     </div>

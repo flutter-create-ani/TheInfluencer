@@ -12,11 +12,9 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
-// Animation configuration
 const ANIMATION_SPEED = 1.5;
 const GAP = 24;
 
-// Sample influencer data with updated categories and language
 const influencers = [
   {
     id: 1,
@@ -74,49 +72,66 @@ interface Influencer {
   alt: string;
 }
 
+/**
+ * Updated infinite scroll hook.
+ * Instead of resetting abruptly, we use modulo arithmetic to calculate an effective scroll.
+ * This ensures the last card connects smoothly to the first one.
+ */
 const useInfiniteScroll = (
   influencersArray: Influencer[],
   direction: "left" | "right"
 ) => {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // rawScroll keeps increasing (or decreasing) continuously.
+  const [rawScroll, setRawScroll] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!containerRef.current || isPaused) return;
 
-    const containerWidth = containerRef.current.offsetWidth;
-    const imageWidth = containerWidth * 0.3; // Adjusted width percentage
-    const singleSetWidth = influencersArray.length * (imageWidth + GAP);
+    const intervalId = setInterval(() => {
+      setRawScroll((prev) =>
+        direction === "left" ? prev - ANIMATION_SPEED : prev + ANIMATION_SPEED
+      );
+    }, 16);
 
-    const scroll = () => {
-      setScrollPosition((prev) => {
-        const newPosition =
-          prev + (direction === "left" ? -ANIMATION_SPEED : ANIMATION_SPEED);
-        // Reset when we've moved past one complete set
-        if (Math.abs(newPosition) >= singleSetWidth) {
-          return (
-            newPosition +
-            (direction === "left" ? singleSetWidth : -singleSetWidth)
-          );
-        }
-        return newPosition;
-      });
-    };
-
-    const intervalId = setInterval(scroll, 16);
     return () => clearInterval(intervalId);
-  }, [isPaused, influencersArray, direction]);
+  }, [isPaused, direction]);
+
+  // Determine the width of one set (one copy of the influencers array).
+  // We attempt to measure the first child’s width for accuracy.
+  let singleSetWidth = 0;
+  if (containerRef.current && containerRef.current.firstElementChild) {
+    const firstChild = containerRef.current.firstElementChild as HTMLElement;
+    const cardWidth = firstChild.offsetWidth;
+    singleSetWidth = influencersArray.length * (cardWidth + GAP);
+  } else if (containerRef.current) {
+    // fallback to a rough estimate if measurement is not possible yet
+    const containerWidth = containerRef.current.offsetWidth;
+    const cardWidth = containerWidth * 0.3;
+    singleSetWidth = influencersArray.length * (cardWidth + GAP);
+  }
+
+  // Compute effective scroll using modulo arithmetic so it loops seamlessly.
+  let effectiveScroll = rawScroll;
+  if (singleSetWidth > 0) {
+    // This ensures effectiveScroll is always between 0 and singleSetWidth.
+    effectiveScroll = ((rawScroll % singleSetWidth) + singleSetWidth) % singleSetWidth;
+    if (direction === "left") {
+      // For left scrolling, we need a negative translation.
+      effectiveScroll = -effectiveScroll;
+    }
+  }
 
   return {
-    scrollPosition,
+    scrollPosition: effectiveScroll,
     containerRef,
     handleMouseEnter: () => setIsPaused(true),
     handleMouseLeave: () => setIsPaused(false),
   };
 };
 
-// Function to get gradient colors based on category
+// Helper: Get gradient colors based on category.
 const getCategoryGradient = (category: string) => {
   if (category.includes("Fashion")) {
     return "from-pink-600 to-purple-600";
@@ -132,7 +147,7 @@ const getCategoryGradient = (category: string) => {
   return "from-indigo-600 to-purple-600"; // default
 };
 
-// Function to get social media icon
+// Helper: Get social media icon based on platform.
 const getSocialMediaIcon = (platform: string) => {
   if (platform.includes("Instagram")) {
     return <Instagram size={14} className="mr-1" />;
@@ -146,10 +161,7 @@ const getSocialMediaIcon = (platform: string) => {
 
 const InfluencerCard = ({ influencer }: { influencer: Influencer }) => {
   const [isHovered, setIsHovered] = useState(false);
-  // const primaryCategory = influencer.categories[0];
-  // const gradientClasses = getCategoryGradient(primaryCategory);
-
-  // Handle array or string for social media
+  // Handle array or string for social media.
   const socialMediaPlatforms = Array.isArray(influencer.primarySocialMedia)
     ? influencer.primarySocialMedia
     : [influencer.primarySocialMedia];
@@ -261,12 +273,8 @@ export const ImageShowcaseCarousel = () => {
   const { scrollPosition, containerRef, handleMouseEnter, handleMouseLeave } =
     useInfiniteScroll(influencers, "left");
 
-  // Duplicate influencers for seamless looping
-  const duplicatedInfluencers = [
-    ...influencers,
-    ...influencers,
-    ...influencers,
-  ];
+  // Duplicate the influencers so that as one set scrolls away the next follows seamlessly.
+  const duplicatedInfluencers = [...influencers, ...influencers, ...influencers];
 
   return (
     <section className="py-16 bg-gradient-to-b from-gray-900 via-gray-900 to-black overflow-hidden relative">
