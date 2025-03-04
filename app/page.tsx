@@ -8,11 +8,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Search, Filter, Globe, Star, Users, BarChart } from "lucide-react";
+import {
+  Search,
+  Filter,
+  Globe,
+  Star,
+  Users,
+  BarChart,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { useInView } from "react-intersection-observer";
 import TypingAnimation from "@/components/TypingAnimation";
+import { ImageShowcaseCarousel } from "@/components/ImageShowcaseCarousel";
+import Image from "next/image";
 
 const MotionCard = motion(Card);
 
@@ -106,7 +115,6 @@ export default function Home() {
               </span>
               <br className="hidden sm:block" /> for Your Brand
             </h1>
-
             <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
               The #1 platform for influencers & brands to connect and grow 🚀
             </p>
@@ -133,16 +141,19 @@ export default function Home() {
               <Button
                 size="lg"
                 className="bg-[#6366F1] hover:bg-[#5355E8] text-white"
-                onClick={() => setIframeUrl("https://form.jotform.com/250525104244445")}
+                onClick={() =>
+                  setIframeUrl("https://form.jotform.com/250525104244445")
+                }
               >
                 Register for Influencer
               </Button>
-
               <Button
                 size="lg"
                 variant="outline"
                 className="border-white/10 text-gray-400 hover:text-white"
-                onClick={() => setIframeUrl("https://form.jotform.com/250515734277459")}
+                onClick={() =>
+                  setIframeUrl("https://form.jotform.com/250515734277459")
+                }
               >
                 Register for Brand
               </Button>
@@ -171,7 +182,6 @@ export default function Home() {
                     >
                       ✖
                     </button>
-
                     {/* iFrame */}
                     <iframe
                       src={iframeUrl}
@@ -252,17 +262,30 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <ScrollAnimatedSection>
-        <section className="py-20 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl max-w-7xl mx-auto">
+        <section className="py-28 px-10 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl max-w-7xl mx-auto">
           <div className="container mx-auto px-6">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
                 Testimonials To Our Work
               </h2>
               <p className="mx-auto max-w-[600px] text-gray-200">
-                Discover what industry experts are saying about the impact and potential of influencer marketing.
+                Discover what industry experts are saying about the impact and
+                potential of influencer marketing.
               </p>
             </div>
             <TestimonialCarousel />
+          </div>
+        </section>
+      </ScrollAnimatedSection>
+
+      {/* Image Section */}
+      <ScrollAnimatedSection>
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            
+            <div className="rounded-3xl shadow-xl overflow-hidden">
+              <ImageShowcaseCarousel />
+            </div>
           </div>
         </section>
       </ScrollAnimatedSection>
@@ -331,7 +354,10 @@ export default function Home() {
                     <motion.div
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
+                      transition={{
+                        delay: index * 0.1 + 0.2,
+                        duration: 0.5,
+                      }}
                     >
                       <feature.icon className="w-10 h-10 text-[#6366F1] mb-4" />
                     </motion.div>
@@ -348,214 +374,132 @@ export default function Home() {
           </div>
         </section>
       </ScrollAnimatedSection>
-      {/* Image Section */}
-<ScrollAnimatedSection>
-  <section className="py-20 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl shadow-xl max-w-7xl mx-auto">
-    <div className="container mx-auto px-6">
-      <div className="text-center space-y-4 mb-16">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
-          Our Image Showcase
-        </h2>
-        <p className="mx-auto max-w-[600px] text-gray-200">
-          A glimpse into our community and successes.
-        </p>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Example images — replace src paths with your own */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
-          className="overflow-hidden rounded-xl shadow-lg"
-        >
-          <img
-            src="/images/example1.jpg"
-            alt="Showcase 1"
-            className="w-full h-auto object-cover"
-          />
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="overflow-hidden rounded-xl shadow-lg"
-        >
-          <img
-            src="/images/example2.jpg"
-            alt="Showcase 2"
-            className="w-full h-auto object-cover"
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="overflow-hidden rounded-xl shadow-lg"
-        >
-          <img
-            src="/images/example3.jpg"
-            alt="Showcase 3"
-            className="w-full h-auto object-cover"
-          />
-        </motion.div>
-        
-        {/* Add more images if desired */}
-      </div>
-    </div>
-  </section>
-</ScrollAnimatedSection>
-
-{/* Blog Section */}
-<ScrollAnimatedSection>
-  <section className="py-20">
-    <div className="container mx-auto px-6">
-      <div className="text-center space-y-4 mb-12">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
-          Latest Articles & News
-        </h2>
-        <p className="mx-auto max-w-[600px] text-gray-400">
-          Stay up-to-date with the latest insights, trends, and tips in influencer marketing.
-        </p>
-      </div>
-
-      {/* Blog Cards */}
-      <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-        {/* Example Blog Post #1 */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
-        >
-          {/* Image */}
-          <img
-            src="/images/blog1.jpg"
-            alt="Blog 1"
-            className="w-full h-48 object-cover rounded-md mb-4"
-          />
-
-          {/* Meta Info */}
-          <div className="flex items-center text-sm text-gray-400 mb-2">
-            <span className="mr-2">
-              <span className="text-red-500 font-semibold">10</span> JUNE
-            </span>
-            <span className="mx-2">|</span>
-            <span>By Admin</span>
-            <span className="mx-2">|</span>
-            <span>Music</span>
+      {/* Blog Section */}
+      <ScrollAnimatedSection>
+        <section className="py-20 overflow-hidden">
+          <div className="container mx-auto px-6">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
+                Latest Articles & News
+              </h2>
+              <p className="mx-auto max-w-[600px] text-gray-400">
+                Stay up-to-date with the latest insights, trends, and tips in
+                influencer marketing.
+              </p>
+            </div>
+            {/* Scrolling Blog Cards */}
+            <div className="relative w-full overflow-hidden">
+              <div className="flex w-max animate-scroll-infinite hover:paused">
+                {[...Array(2)].flatMap((_, repeatIndex) =>
+                  [
+                    {
+                      id: 1,
+                      image:
+                        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+                      date: "15 MAY",
+                      author: "By Jane Doe",
+                      category: "Technology",
+                      title: "The Future of AI in Marketing",
+                      link: "/news/future-of-ai",
+                    },
+                    {
+                      id: 2,
+                      image:
+                        "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+                      date: "22 MAY",
+                      author: "By John Smith",
+                      category: "Lifestyle",
+                      title: "Top 10 Tips for a Healthy Work-Life Balance",
+                      link: "/news/work-life-balance",
+                    },
+                    {
+                      id: 3,
+                      image:
+                        "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+                      date: "30 MAY",
+                      author: "By Alice Johnson",
+                      category: "Travel",
+                      title: "Exploring Hidden Gems in Europe",
+                      link: "/news/hidden-gems-europe",
+                    },
+                    {
+                      id: 4,
+                      image:
+                        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+                      date: "5 JUNE",
+                      author: "By Michael Brown",
+                      category: "Finance",
+                      title: "How to Invest Wisely in 2024",
+                      link: "/news/invest-wisely-2024",
+                    },
+                  ].map((card) => (
+                    <div
+                      key={`${repeatIndex}-${card.id}`}
+                      className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm w-[500px] mx-4 flex-shrink-0 hover:scale-95 transition-transform duration-300"
+                    >
+                      <Image
+                        src={card.image}
+                        alt={`Blog ${card.id}`}
+                        width={500}
+                        height={192}
+                        className="w-full h-48 object-cover rounded-md mb-4"
+                      />
+                      <div className="flex items-center text-sm text-gray-400 mb-2">
+                        <span className="mr-2">
+                          <span className="text-red-500 font-semibold">
+                            {card.date.split(" ")[0]}
+                          </span>{" "}
+                          {card.date.split(" ")[1]}
+                        </span>
+                        <span className="mx-2">|</span>
+                        <span>{card.author}</span>
+                        <span className="mx-2">|</span>
+                        <span>{card.category}</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-white mb-4">
+                        {card.title}
+                      </h3>
+                      <a
+                        href={card.link}
+                        className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
+                      >
+                        Read More
+                        <svg
+                          className="ml-2 w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
+                        </svg>
+                      </a>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
           </div>
-
-          {/* Title */}
-          <h3 className="text-lg font-semibold text-white mb-4">
-            Many of those Products Offer the Potential
-          </h3>
-
-          {/* Read More Link */}
-          <a
-            href="#"
-            className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
-          >
-            Read More
-            <svg
-              className="ml-2 w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
-            </svg>
-          </a>
-        </motion.div>
-
-        {/* Example Blog Post #2 */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
-        >
-          <img
-            src="/images/blog2.jpg"
-            alt="Blog 2"
-            className="w-full h-48 object-cover rounded-md mb-4"
-          />
-          <div className="flex items-center text-sm text-gray-400 mb-2">
-            <span className="mr-2">
-              <span className="text-red-500 font-semibold">10</span> JUNE
-            </span>
-            <span className="mx-2">|</span>
-            <span>By Admin</span>
-            <span className="mx-2">|</span>
-            <span>Music</span>
-          </div>
-          <h3 className="text-lg font-semibold text-white mb-4">
-            Many of those Products Offer the Potential
-          </h3>
-          <a
-            href="#"
-            className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
-          >
-            Read More
-            <svg
-              className="ml-2 w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
-            </svg>
-          </a>
-        </motion.div>
-
-        {/* Example Blog Post #3 */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="bg-white/5 p-6 rounded-lg shadow-lg backdrop-blur-sm"
-        >
-          <img
-            src="/images/blog3.jpg"
-            alt="Blog 3"
-            className="w-full h-48 object-cover rounded-md mb-4"
-          />
-          <div className="flex items-center text-sm text-gray-400 mb-2">
-            <span className="mr-2">
-              <span className="text-red-500 font-semibold">10</span> JUNE
-            </span>
-            <span className="mx-2">|</span>
-            <span>By Admin</span>
-            <span className="mx-2">|</span>
-            <span>Music</span>
-          </div>
-          <h3 className="text-lg font-semibold text-white mb-4">
-            Many of those Products Offer the Potential
-          </h3>
-          <a
-            href="#"
-            className="text-red-500 hover:text-red-400 font-medium inline-flex items-center"
-          >
-            Read More
-            <svg
-              className="ml-2 w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10.293 15.707a1 1 0 0 1 0-1.414L13.586 11H3a1 1 0 1 1 0-2h10.586L10.293 5.707a1 1 0 1 1 1.414-1.414l5 5a.997.997 0 0 1 .293.704v.006a.997.997 0 0 1-.293.704l-5 5a1 1 0 0 1-1.414 0z" />
-            </svg>
-          </a>
-        </motion.div>
-      </div>
-    </div>
-  </section>
-</ScrollAnimatedSection>
-
+        </section>
+        <style>
+          {`
+            @keyframes scroll-infinite {
+              from {
+                transform: translateX(0);
+              }
+              to {
+                transform: translateX(-50%);
+              }
+            }
+            .animate-scroll-infinite {
+              display: flex;
+              animation: scroll-infinite 20s linear infinite;
+            }
+            .animate-scroll-infinite:hover {
+              animation-play-state: paused;
+            }
+          `}
+        </style>
+      </ScrollAnimatedSection>
     </div>
   );
 }

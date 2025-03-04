@@ -7,7 +7,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FooterModal } from "@/components/FooterModal";
 import { FaInstagram, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
-
+import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -43,7 +43,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen bg-[#0A0B1C] text-white`}>
+      <body
+        className={`${inter.className} min-h-screen bg-[#0A0B1C] text-white`}
+      >
         {/* HEADER with Pink Gradient & Rounded Ends */}
         <header className="fixed top-0 w-full z-50">
           <div className="mx-2 mt-2 bg-[#0A0B1C]/90 rounded-l-3xl rounded-r-3xl shadow-lg">
@@ -54,9 +56,11 @@ export default function RootLayout({
                 transition={{ duration: 0.5 }}
               >
                 <Link href="/" className="flex items-center space-x-3">
-                  <img
+                  <Image
                     src="/2.png"
                     alt="Logo"
+                    width={40} // Specify width
+                    height={40} // Specify height
                     className="h-10 w-10 object-cover rounded-full"
                   />
                   <span className="text-lg font-bold text-white">
@@ -65,7 +69,7 @@ export default function RootLayout({
                 </Link>
               </motion.div>
               {/* Desktop Navigation */}
-              <div className="hidden md:flex space-x-6">
+              <div className="hidden md:flex space-x-16">
                 {["Home", "About", "Features", "Contact"].map((item, index) => (
                   <motion.div
                     key={item}
@@ -96,9 +100,9 @@ export default function RootLayout({
 
             {/* Mobile Navigation Menu */}
             {mobileNavOpen && (
-              <div className="md:hidden bg-gradient-to-r from-pink-300 via-pink-400 to-pink-500 border-t border-pink-400">
+              <div className="md:hidden ">
                 <ul className="flex flex-col items-center space-y-4 py-4">
-                  {["Home", "About", "Features", "contact"].map((item) => (
+                  {["Home", "About", "Features", "Contact"].map((item) => (
                     <li key={item}>
                       <Link
                         href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
@@ -147,9 +151,7 @@ export default function RootLayout({
               <ul className="space-y-2">
                 <li>
                   <button
-                    onClick={() =>
-                      openModal("Blog", <p>Coming Soon......</p>)
-                    }
+                    onClick={() => openModal("Blog", <p>Coming Soon......</p>)}
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     Blog
