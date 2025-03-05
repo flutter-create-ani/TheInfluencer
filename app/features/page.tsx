@@ -70,11 +70,11 @@ export default function FeaturesPage() {
             </Card>
           ))}
         </div>
-        <div className="mt-16 text-center">
+        {/* <div className="mt-16 text-center">
           <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white">
             Start Your Free Trial
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -47,9 +47,12 @@ export default function AboutPage() {
               <li>Fostering authentic partnerships</li>
               <li>Continuous improvement and learning</li>
             </ul>
-            <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white mt-4">
-              Join Our Team
-            </Button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc3f-Yv5qJfu_VJnzhR3fg9vl-Cu4GB2N6bAed1l69H69rIsQ/viewform?usp=header">
+  <Button className="bg-[#6366F1] hover:bg-[#5355E8] text-white mt-4">
+    Join Our Team
+  </Button>
+</a>
+
           </div>
         </div>
       </div>
