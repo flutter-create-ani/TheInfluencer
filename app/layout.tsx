@@ -68,9 +68,9 @@ export default function RootLayout({
                   </span>
                 </Link>
               </motion.div>
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex space-x-16">
-                {["Home", "About", "Features", "Contact"].map((item, index) => (
+               {/* Desktop Navigation */}
+               <div className="hidden md:flex space-x-16">
+                {["Home", "About", "Features", "Discover", "Contact"].map((item, index) => (
                   <motion.div
                     key={item}
                     variants={navItemVariants}
@@ -98,11 +98,12 @@ export default function RootLayout({
               </div>
             </nav>
 
+            
             {/* Mobile Navigation Menu */}
             {mobileNavOpen && (
               <div className="md:hidden ">
                 <ul className="flex flex-col items-center space-y-4 py-4">
-                  {["Home", "About", "Features", "Contact"].map((item) => (
+                  {["Home", "About", "Features", "Discover", "Contact"].map((item) => (
                     <li key={item}>
                       <Link
                         href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
@@ -116,7 +117,7 @@ export default function RootLayout({
                 </ul>
               </div>
             )}
-          </div>
+            </div>
         </header>
 
         {/* MAIN CONTENT */}
@@ -299,6 +300,7 @@ export default function RootLayout({
             &copy; {currentYear} The Influencer. All rights reserved.
           </div>
         </footer>
+       
 
         {/* Footer Modal */}
         <FooterModal
