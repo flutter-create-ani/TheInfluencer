@@ -22,6 +22,8 @@ import { useInView } from "react-intersection-observer";
 import TypingAnimation from "@/components/TypingAnimation";
 import { ImageShowcaseCarousel } from "@/components/ImageShowcaseCarousel";
 import Image from "next/image";
+import { SnakeGame } from "@/components/snakeGame/SnakeGame";
+import useOnlineStatus from "@/utils/useOnlineStatus";
 
 const MotionCard = motion(Card);
 
@@ -72,6 +74,10 @@ export default function Home() {
       transition: { duration: 0.5 },
     },
   };
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return (<SnakeGame/>);
+  }
 
   return (
     <div>
